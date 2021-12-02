@@ -1,7 +1,6 @@
 <?php
 $host='localhost';
-//να οριστεί η βάση
-$db = 'THE_DB';             
+$db = 'adise21_mrs';             
 require_once "config_local.php";
 
 $user=$DB_USER;
