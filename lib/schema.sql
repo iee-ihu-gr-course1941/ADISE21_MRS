@@ -141,39 +141,39 @@ insert  into `cards_for_moutzouris`(`c_id`,`c_name`,`c_value`,`c_suit`) values
 (49,'ten',10,'spades'),
 (52,'king',13,'spades');
 
-/*Table structure for table `deck_1` */
+/*Table structure for table `deck1` */
 
-DROP TABLE IF EXISTS `deck_1`;
+DROP TABLE IF EXISTS `deck1`;
 
-CREATE TABLE `deck_1` (
-  `d_id1` int(11) NOT NULL AUTO_INCREMENT,
-  `d_name1` enum('ace','two','three','four','five','six','seven','eight','nine','ten','jack','queen','king') DEFAULT NULL,
-  `d_value1` int(11) DEFAULT NULL,
-  `d_suit1` enum('spades','clubs','hearts','diamonds') DEFAULT NULL,
-  `p_id1` int(20) DEFAULT NULL,
-  PRIMARY KEY (`d_id1`),
-  KEY `d_id1` (`p_id1`),
-  CONSTRAINT `deck_1_ibfk_1` FOREIGN KEY (`d_id1`) REFERENCES `player` (`p_id`)
+CREATE TABLE `deck1` (
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
+  `c_name1` enum('ace','two','three','four','five','six','seven','eight','nine','ten','jack','queen','king') DEFAULT NULL,
+  `c_value1` int(11) DEFAULT NULL,
+  `c_suit1` enum('spades','clubs','hearts','diamonds') DEFAULT NULL,
+  `p_id1` int(20) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`p_id1`),
+  KEY `c_id` (`c_id`),
+  CONSTRAINT `deck1_ibfk_2` FOREIGN KEY (`c_id`) REFERENCES `cards_for_moutzouris` (`c_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 MAX_ROWS=52;
 
-/*Data for the table `deck_1` */
+/*Data for the table `deck1` */
 
-/*Table structure for table `deck_2` */
+/*Table structure for table `deck2` */
 
-DROP TABLE IF EXISTS `deck_2`;
+DROP TABLE IF EXISTS `deck2`;
 
-CREATE TABLE `deck_2` (
-  `d_id2` int(11) NOT NULL AUTO_INCREMENT,
-  `d_name2` enum('ace','two','three','four','five','six','seven','eight','nine','ten','jack','queen','king') DEFAULT NULL,
-  `d_value2` int(11) DEFAULT NULL,
-  `d_suit2` enum('spades','clubs','hearts','diamonds') DEFAULT NULL,
-  `p_id2` int(20) DEFAULT NULL,
-  PRIMARY KEY (`d_id2`),
-  KEY `d_id2` (`p_id2`),
-  CONSTRAINT `deck_2_ibfk_1` FOREIGN KEY (`p_id2`) REFERENCES `player` (`p_id`)
+CREATE TABLE `deck2` (
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
+  `c_name2` enum('ace','two','three','four','five','six','seven','eight','nine','ten','jack','queen','king') DEFAULT NULL,
+  `c_value2` int(11) DEFAULT NULL,
+  `c_suit2` enum('spades','clubs','hearts','diamonds') DEFAULT NULL,
+  `p_id2` int(20) NOT NULL DEFAULT 2,
+  PRIMARY KEY (`p_id2`),
+  KEY `c_id` (`c_id`),
+  CONSTRAINT `deck2_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `cards_for_moutzouris` (`c_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 MAX_ROWS=52;
 
-/*Data for the table `deck_2` */
+/*Data for the table `deck2` */
 
 /*Table structure for table `game_status` */
 
@@ -196,8 +196,8 @@ CREATE TABLE `player` (
   `p_username` varchar(20) DEFAULT NULL,
   `p_no_cardsInHand` int(21) DEFAULT NULL,
   `p_score` int(11) DEFAULT NULL,
-  `p_turn` enum('yes','no') NOT NULL,
-  `p_token` varchar(25) NOT NULL,
+  `p_turn` enum('yes','no') DEFAULT NULL,
+  `p_token` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`p_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
