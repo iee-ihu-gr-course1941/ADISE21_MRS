@@ -1,29 +1,33 @@
-<html>
+<!DOCTYPE html>
+ <html class="no-js">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="main.css"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
     </head>
     <body>
-<div class="game">
-    <h3>Moutzouris</h3>
-    <div class="game-body">
+
+        <div class="game">
+            <h3>Moutzouris</h3>
     
-    <div class="game-btns">
-        <input type="button" id="btnStart" class="btn" value="start" onclick="startGame()"/>
-        <input type="button" class="btn" value="hit me card" onclick="hitme()"/>
-        <input type="button"  class="btn" value="remove double cards" onclick="remove()"/>
-    </div>
-            <div class="status" id="status"></div>
-            <div id="deck" class="deck">
-                <div id="deckcount">52</div>
+            <div class="game-body">
+                <div class="game-options">
+                    <input type="button" id="btnStart" class="btn" value="start" onclick="start()">
+                    <input type="button" class="btn" value="hit me a card" onclick="hitMe()">
+                    <input type="button" class="btn" value="remove duplicate cards" onclick="remove()">
+                </div>
+            
+                        <div class="status" id="status"></div>                       
+            
+                        <div id="players" class="players"></div>
+                        
+            
+                        <div class="clear"></div>
             </div>
-    
-            <div id="players" class="players">
-            </div>
-    
-            <div class="clear"></div>
         </div>
-    </div>
-    <script src="moutzouris.js" async defer></script>
-</body>
+        <script src="moutzouris.js" async defer></script>
+    </body>
 </html>
