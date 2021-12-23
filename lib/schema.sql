@@ -149,11 +149,12 @@ DROP TABLE IF EXISTS `deck1`;
 
 CREATE TABLE `deck1` (
   `c_id` int(11) NOT NULL AUTO_INCREMENT,
-  `c_name1` enum('ace','two','three','four','five','six','seven','eight','nine','ten','jack','queen','king') DEFAULT NULL,
-  `c_value1` int(11) DEFAULT NULL,
-  `c_suit1` enum('spades','clubs','hearts','diamonds') DEFAULT NULL,
-  `p_id1` int(20) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`p_id1`),
+  `c_name` enum('ace','two','three','four','five','six','seven','eight','nine','ten','jack','queen','king','back') DEFAULT NULL,
+  `c_value` int(11) DEFAULT NULL,
+  `c_suit` enum('spades','clubs','hearts','diamonds','back') DEFAULT NULL,
+  `c_url` varchar(150) DEFAULT NULL,
+  `p_id` enum('p1') NOT NULL DEFAULT 'p1',
+  PRIMARY KEY (`p_id`),
   KEY `c_id` (`c_id`),
   CONSTRAINT `deck1_ibfk_2` FOREIGN KEY (`c_id`) REFERENCES `cards_for_moutzouris` (`c_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 MAX_ROWS=52;
@@ -166,11 +167,12 @@ DROP TABLE IF EXISTS `deck2`;
 
 CREATE TABLE `deck2` (
   `c_id` int(11) NOT NULL AUTO_INCREMENT,
-  `c_name2` enum('ace','two','three','four','five','six','seven','eight','nine','ten','jack','queen','king') DEFAULT NULL,
-  `c_value2` int(11) DEFAULT NULL,
-  `c_suit2` enum('spades','clubs','hearts','diamonds') DEFAULT NULL,
-  `p_id2` int(20) NOT NULL DEFAULT 2,
-  PRIMARY KEY (`p_id2`),
+  `c_name` enum('ace','two','three','four','five','six','seven','eight','nine','ten','jack','queen','king','back') DEFAULT NULL,
+  `c_value` int(11) DEFAULT NULL,
+  `c_suit` enum('spades','clubs','hearts','diamonds','back') DEFAULT NULL,
+  `c_url` varchar(150) DEFAULT NULL,
+  `p_id` enum('p2') NOT NULL DEFAULT 'p2',
+  PRIMARY KEY (`p_id`),
   KEY `c_id` (`c_id`),
   CONSTRAINT `deck2_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `cards_for_moutzouris` (`c_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 MAX_ROWS=52;
