@@ -10,5 +10,7 @@
 |`api/cards/read_single` | GET | body: Id of card | Gets a single card from deck |
 |`api/cards/delete` | DELETE | - | Deletes double cards from deck |
 
+### Swagger UI API Documentation 
+http://localhost/adise21_api/documentation/
 
 
