@@ -11,5 +11,4 @@
 |`api/cards/delete` | DELETE | - | Deletes double cards from deck |
 
 ### Swagger UI API Documentation 
-http://localhost/ADISE21_MRS/adise21_api/documentation/
-
+http://localhost/ADISE21_MRS/api/documentation/
