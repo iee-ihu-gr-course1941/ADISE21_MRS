@@ -8,6 +8,7 @@
 | --- | --- | --- | --- |
 |`api/cards/get_cards` | GET | - | Gets a shuffled deck |
 |`api/cards/read_single` | GET | body: Id of card | Gets a single card from deck |
+|`api/status/handle_status` | GET | - | Gets game status |
 |`api/cards/delete` | DELETE | - | Deletes double cards from deck |
 
 ### Swagger UI API Documentation 
