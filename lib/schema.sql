@@ -140,8 +140,67 @@ insert  into `cards_for_moutzouris`(`c_id`,`c_name`,`c_value`,`c_suit`,`c_url`) 
 (47,'eight',8,'spades','https://upload.wikimedia.org/wikipedia/commons/2/21/Playing_card_spade_8.svg\''),
 (48,'nine',9,'spades','https://upload.wikimedia.org/wikipedia/commons/e/e0/Playing_card_spade_9.svg\''),
 (49,'ten',10,'spades','https://upload.wikimedia.org/wikipedia/commons/8/87/Playing_card_spade_10.svg\''),
-(52,'king',13,'spades','https://upload.wikimedia.org/wikipedia/commons/9/9'),
-(53,'back',14,'back','https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Card_back_01.svg/703px-Card_back_01.svg.png');
+(52,'king',13,'spades','https://upload.wikimedia.org/wikipedia/commons/f/f1/English_pattern_king_of_spades.svg'),
+(53,'back',14,'back','https://upload.wikimedia.org/wikipedia/commons/d/d4/Card_back_01.svg');
+
+/*Table structure for table `cards_for_moutzouris_reset` */
+
+DROP TABLE IF EXISTS `cards_for_moutzouris_reset`;
+
+CREATE TABLE `cards_for_moutzouris_reset` (
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
+  `c_name` enum('ace','two','three','four','five','six','seven','eight','nine','ten','jack','queen','king','back') NOT NULL,
+  `c_value` int(11) NOT NULL,
+  `c_suit` enum('spades','clubs','hearts','diamonds','back') NOT NULL,
+  `c_url` varchar(150) NOT NULL,
+  PRIMARY KEY (`c_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 MAX_ROWS=52;
+
+/*Data for the table `cards_for_moutzouris_reset` */
+
+insert  into `cards_for_moutzouris_reset`(`c_id`,`c_name`,`c_value`,`c_suit`,`c_url`) values 
+(1,'ace',1,'clubs','https://upload.wikimedia.org/wikipedia/commons/3/36/Playing_card_club_A.svg\''),
+(2,'two',2,'clubs','https://upload.wikimedia.org/wikipedia/commons/f/f5/Playing_card_club_2.svg\''),
+(3,'three',3,'clubs','https://upload.wikimedia.org/wikipedia/commons/6/6b/Playing_card_club_3.svg\'\r\n'),
+(4,'four',4,'clubs','https://upload.wikimedia.org/wikipedia/commons/3/3d/Playing_card_club_4.svg\''),
+(5,'five',5,'clubs','https://upload.wikimedia.org/wikipedia/commons/5/50/Playing_card_club_5.svg\''),
+(6,'six',6,'clubs','https://upload.wikimedia.org/wikipedia/commons/a/a0/Playing_card_club_6.svg\''),
+(7,'seven',7,'clubs','https://upload.wikimedia.org/wikipedia/commons/4/4b/Playing_card_club_7.svg\''),
+(8,'eight',8,'clubs','https://upload.wikimedia.org/wikipedia/commons/e/eb/Playing_card_club_8.svg\''),
+(9,'nine',9,'clubs','https://upload.wikimedia.org/wikipedia/commons/2/27/Playing_card_club_9.svg\''),
+(10,'ten',10,'clubs','https://upload.wikimedia.org/wikipedia/commons/3/3e/Playing_card_club_10.svg\''),
+(14,'ace',1,'diamonds','https://upload.wikimedia.org/wikipedia/commons/d/d3/Playing_card_diamond_A.svg\''),
+(15,'two',2,'diamonds','https://upload.wikimedia.org/wikipedia/commons/5/59/Playing_card_diamond_2.svg\''),
+(16,'three',3,'diamonds','https://upload.wikimedia.org/wikipedia/commons/8/82/Playing_card_diamond_3.svg\''),
+(17,'four',4,'diamonds','https://upload.wikimedia.org/wikipedia/commons/2/20/Playing_card_diamond_4.svg\''),
+(18,'five',5,'diamonds','https://upload.wikimedia.org/wikipedia/commons/f/fd/Playing_card_diamond_5.svg\''),
+(19,'six',6,'diamonds','https://upload.wikimedia.org/wikipedia/commons/8/80/Playing_card_diamond_6.svg\''),
+(20,'seven',7,'diamonds','https://upload.wikimedia.org/wikipedia/commons/e/e6/Playing_card_diamond_7.svg\''),
+(21,'eight',8,'diamonds','https://upload.wikimedia.org/wikipedia/commons/7/78/Playing_card_diamond_8.svg\''),
+(22,'nine',9,'diamonds','https://upload.wikimedia.org/wikipedia/commons/9/9e/Playing_card_diamond_9.svg\''),
+(23,'ten',10,'diamonds','https://upload.wikimedia.org/wikipedia/commons/3/34/Playing_card_diamond_10.svg\''),
+(27,'ace',1,'hearts','https://upload.wikimedia.org/wikipedia/commons/5/57/Playing_card_heart_A.svg\''),
+(28,'two',2,'hearts','https://upload.wikimedia.org/wikipedia/commons/d/d5/Playing_card_heart_2.svg\''),
+(29,'three',3,'hearts','https://upload.wikimedia.org/wikipedia/commons/b/b6/Playing_card_heart_3.svg\''),
+(30,'four',4,'hearts','https://upload.wikimedia.org/wikipedia/commons/a/a2/Playing_card_heart_4.svg\''),
+(31,'five',5,'hearts','https://upload.wikimedia.org/wikipedia/commons/5/52/Playing_card_heart_5.svg\''),
+(32,'six',6,'hearts','https://upload.wikimedia.org/wikipedia/commons/c/cd/Playing_card_heart_6.svg\''),
+(33,'seven',7,'hearts','https://upload.wikimedia.org/wikipedia/commons/9/94/Playing_card_heart_7.svg\''),
+(34,'eight',8,'hearts','https://upload.wikimedia.org/wikipedia/commons/5/50/Playing_card_heart_8.svg\''),
+(35,'nine',9,'hearts','https://upload.wikimedia.org/wikipedia/commons/5/50/Playing_card_heart_9.svg\''),
+(36,'ten',10,'hearts','https://upload.wikimedia.org/wikipedia/commons/9/98/Playing_card_heart_10.svg\''),
+(40,'ace',1,'spades','https://upload.wikimedia.org/wikipedia/commons/2/25/Playing_card_spade_A.svg\''),
+(41,'two',2,'spades','https://upload.wikimedia.org/wikipedia/commons/f/f2/Playing_card_spade_2.svg\''),
+(42,'three',3,'spades','https://upload.wikimedia.org/wikipedia/commons/5/52/Playing_card_spade_3.svg\''),
+(43,'four',4,'spades','https://upload.wikimedia.org/wikipedia/commons/2/2c/Playing_card_spade_4.svg\''),
+(44,'five',5,'spades','https://upload.wikimedia.org/wikipedia/commons/9/94/Playing_card_spade_5.svg\''),
+(45,'six',6,'spades','https://upload.wikimedia.org/wikipedia/commons/d/d2/Playing_card_spade_6.svg\''),
+(46,'seven',7,'spades','https://upload.wikimedia.org/wikipedia/commons/6/66/Playing_card_spade_7.svg\''),
+(47,'eight',8,'spades','https://upload.wikimedia.org/wikipedia/commons/2/21/Playing_card_spade_8.svg\''),
+(48,'nine',9,'spades','https://upload.wikimedia.org/wikipedia/commons/e/e0/Playing_card_spade_9.svg\''),
+(49,'ten',10,'spades','https://upload.wikimedia.org/wikipedia/commons/8/87/Playing_card_spade_10.svg\''),
+(52,'king',13,'spades','https://upload.wikimedia.org/wikipedia/commons/f/f1/English_pattern_king_of_spades.svg'),
+(53,'back',14,'back','https://upload.wikimedia.org/wikipedia/commons/d/d4/Card_back_01.svg');
 
 /*Table structure for table `deck1` */
 
@@ -197,11 +256,10 @@ CREATE TABLE `game_status` (
 DROP TABLE IF EXISTS `players`;
 
 CREATE TABLE `players` (
-  `p_id` enum('p1','p2') NOT NULL,
+  `p_id` enum('p1','p2') DEFAULT NULL,
   `p_username` varchar(20) DEFAULT NULL,
   `token` varchar(100) DEFAULT NULL,
-  `p_last_action` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`p_id`)
+  `p_last_action` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `players` */
@@ -217,6 +275,20 @@ SET NEW.last_change = NOW();
 END */$$
 
 
+DELIMITER ;
+
+/* Procedure structure for procedure `clean_deck` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `clean_deck` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `clean_deck`()
+BEGIN
+	replace into cards_for_moutzouris select * from cards_for_moutzouris_reset;
+	update `players` set p_username=null, token=null;
+    update `game_status` set `status`='not active', `p_turn`=null, `result`=null;
+    END */$$
 DELIMITER ;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
