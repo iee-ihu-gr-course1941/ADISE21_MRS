@@ -2,7 +2,7 @@
 require "dbconnect.php";
 
 
-show_card(10);
+show_card(($_GET['id']));
 
 function show_card($x) {
 	global $mysqli;

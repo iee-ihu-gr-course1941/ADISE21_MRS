@@ -1,6 +1,6 @@
 <?php
 
-require "../lib/dbconnect.php";
+require "dbconnect.php";
 //echo "ok";
 
 read_deck();
