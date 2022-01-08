@@ -1,7 +1,7 @@
 <?php
 
 
-function show_piece($x,$y) {
+/*function show_piece($x,$y) {
 	global $mysqli;
 	
 	$sql = 'select * from board where x=? and y=?';
@@ -55,9 +55,9 @@ function move_piece($x,$y,$x2,$y2,$token) {
 	header("HTTP/1.1 400 Bad Request");
 	print json_encode(['errormesg'=>"This move is illegal."]);
 	exit;
-}
+}*/
 		
-function show_board($input) {
+/*function show_board($input) {
 	global $mysqli;
 	
 	$b=current_color($input['token']);
@@ -67,32 +67,46 @@ function show_board($input) {
 		header('Content-type: application/json');
 		print json_encode(read_board(), JSON_PRETTY_PRINT);
 	}
-}
+}*/
 
+
+//θα φέρει τις κάρτες από τον cards_for_moutzouris_reset
+//στον cards_for_moutzouris
 function reset_board() {
 	global $mysqli;
 	$sql = 'call clean_board()';
 	$mysqli->query($sql);
 }
 
-function read_board() {
+//read deck cards_for_moutzouris
+function read_board() { 
 	global $mysqli;
-	$sql = 'select * from board';
+	$sql = 'select * from cards_for_moutzouris';
 	$st = $mysqli->prepare($sql);
 	$st->execute();
 	$res = $st->get_result();
-	return($res->fetch_all(MYSQLI_ASSOC));
+	header('Content-type: application/json');
+	print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);
+	//return($res->fetch_all(MYSQLI_ASSOC));
 }
 
-function convert_board(&$orig_board) {
+
+
+
+
+/*function convert_board(&$orig_board) {
 	$board=[];
 	foreach($orig_board as $i=>&$row) {
 		$board[$row['x']][$row['y']] = &$row;
 	} 
 	return($board);
-}
+}*/
 
-function show_board_by_player($b) {
+
+
+
+
+/*function show_board_by_player($b) {
 
 	global $mysqli;
 
@@ -108,9 +122,9 @@ function show_board_by_player($b) {
 	}
 	header('Content-type: application/json');
 	print json_encode($orig_board, JSON_PRETTY_PRINT);
-}
+}*/
 
-function add_valid_moves_to_board(&$board,$b) {
+/*function add_valid_moves_to_board(&$board,$b) {
 	$number_of_moves=0;
 	
 	for($x=1;$x<9;$x++) {
@@ -119,9 +133,11 @@ function add_valid_moves_to_board(&$board,$b) {
 		}
 	}
 	return($number_of_moves);
-}
+}*/
 
-function add_valid_moves_to_piece(&$board,$b,$x,$y) {
+
+
+/*function add_valid_moves_to_piece(&$board,$b,$x,$y) {
 	$number_of_moves=0;
 	if($board[$x][$y]['piece_color']==$b) {
 		switch($board[$x][$y]['piece']){
@@ -134,9 +150,9 @@ function add_valid_moves_to_piece(&$board,$b,$x,$y) {
 		}
 	} 
 	return($number_of_moves);
-}
+}*/
 
-function king_moves(&$board,$b,$x,$y) {
+/*function king_moves(&$board,$b,$x,$y) {
 	$directions = [
 		[1,0],
 		[-1,0],
@@ -283,6 +299,6 @@ function do_move($x,$y,$x2,$y2) {
 
 	header('Content-type: application/json');
 	print json_encode(read_board(), JSON_PRETTY_PRINT);
-}
+}*/
 
 ?>
