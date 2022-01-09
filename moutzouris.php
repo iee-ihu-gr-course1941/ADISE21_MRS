@@ -86,7 +86,6 @@ function handle_board($method/*,$input*/) {
                     break;
             case 'p1': 
             case 'p2': 
-                print "test";
                 handle_user($method, $b,$input);
                         break;
             default: header("HTTP/1.1 404 Not Found");

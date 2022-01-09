@@ -4,7 +4,6 @@ var board={};
 var last_update=new Date().getTime();
 var timer=null;
 
-//$('#moutzouris_login').click( login_to_game);
 
 $(function () {
 	//draw_empty_board();
@@ -14,6 +13,7 @@ $(function () {
 	$('#moutzouris_reset').click( reset_board);
 	//$('#do_move').click( do_move);
 	//$('#move_div').hide();
+	$('#moutzouris_start').hide();
 	game_status_update();
 	//$('#the_move_src').change( update_moves_selector);
 	//$('#do_move2').click( do_move2);
@@ -96,22 +96,28 @@ function reset_board() {
 			data: JSON.stringify( {p_username: $('#p_username').val(), p_id: pid}),
 			success: login_result,
 			error: login_error});
-	alert('username ok');
+	//alert('username ok');
+	//alert(data);
 }
 
+//ok και αυτή
 function login_result(data) {
-	//console.log("inside log");
+	//console.log("inside log ok");
 	me = data[0];
 	$('#game_initializer').hide();
 	update_info();
 	game_status_update();
+	$('#moutzouris_start').show();
 }
 
-function login_error(data,y,z,c) {
+function login_error(data,_y,_z,_c) {
 		var x = data.responseJSON;
 		alert(x.errormesg);
+		console.log("data login error function" + data);
 }
 
+
+//Δουλεύει
 function game_status_update() {
 	
 	clearTimeout(timer);
@@ -141,7 +147,8 @@ function game_status_update() {
 }
 
 function update_info(){
-	$('#game_info').html("I am Player: "+me.p_id+", my name is "+me.p_username +'<br>Token='+me.token+'<br>Game state: '+game_status.status+', '+ game_status.p_turn+' must play now.');
+	$('#game_info').html("I am Player: "+me.p_id+", my name is "+me.p_username 
+	+'<br>Token='+me.token+'<br>Game state: '+game_status.status+', '+ game_status.p_turn+' must play now.');
 	
 	
 }
