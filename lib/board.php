@@ -74,7 +74,7 @@ function move_piece($x,$y,$x2,$y2,$token) {
 //στον cards_for_moutzouris
 function reset_board() {
 	global $mysqli;
-	$sql = 'call clean_board()';
+	$sql = 'call clean_deck()';
 	$mysqli->query($sql);
 }
 
