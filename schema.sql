@@ -140,8 +140,7 @@ insert  into `cards_for_moutzouris`(`c_id`,`c_name`,`c_value`,`c_suit`,`c_url`) 
 (47,'eight',8,'spades','https://upload.wikimedia.org/wikipedia/commons/2/21/Playing_card_spade_8.svg'),
 (48,'nine',9,'spades','https://upload.wikimedia.org/wikipedia/commons/e/e0/Playing_card_spade_9.svg'),
 (49,'ten',10,'spades','https://upload.wikimedia.org/wikipedia/commons/8/87/Playing_card_spade_10.svg'),
-(52,'king',13,'spades','https://upload.wikimedia.org/wikipedia/commons/f/f1/English_pattern_king_of_spades.svg'),
-(53,'back',14,'back','https://upload.wikimedia.org/wikipedia/commons/d/d4/Card_back_01.svg');
+(52,'king',13,'spades','https://upload.wikimedia.org/wikipedia/commons/f/f1/English_pattern_king_of_spades.svg');
 
 /*Table structure for table `cards_for_moutzouris_reset` */
 
@@ -199,8 +198,7 @@ insert  into `cards_for_moutzouris_reset`(`c_id`,`c_name`,`c_value`,`c_suit`,`c_
 (47,'eight',8,'spades','https://upload.wikimedia.org/wikipedia/commons/2/21/Playing_card_spade_8.svg'),
 (48,'nine',9,'spades','https://upload.wikimedia.org/wikipedia/commons/e/e0/Playing_card_spade_9.svg'),
 (49,'ten',10,'spades','https://upload.wikimedia.org/wikipedia/commons/8/87/Playing_card_spade_10.svg'),
-(52,'king',13,'spades','https://upload.wikimedia.org/wikipedia/commons/f/f1/English_pattern_king_of_spades.svg'),
-(53,'back',14,'back','https://upload.wikimedia.org/wikipedia/commons/d/d4/Card_back_01.svg');
+(52,'king',13,'spades','https://upload.wikimedia.org/wikipedia/commons/f/f1/English_pattern_king_of_spades.svg');
 
 /*Table structure for table `deck1` */
 
@@ -249,18 +247,26 @@ CREATE TABLE `game_status` (
 
 /*Data for the table `game_status` */
 
+insert  into `game_status`(`status`,`p_turn`,`result`,`last_change`) values 
+('not active',NULL,NULL,'2022-01-09 23:42:38');
+
 /*Table structure for table `players` */
 
 DROP TABLE IF EXISTS `players`;
 
 CREATE TABLE `players` (
-  `p_id` enum('p1','p2') DEFAULT NULL,
   `p_username` varchar(20) DEFAULT NULL,
+  `p_id` enum('p1','p2') NOT NULL,
   `token` varchar(100) DEFAULT NULL,
-  `p_last_action` timestamp NULL DEFAULT NULL
+  `p_last_action` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`p_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `players` */
+
+insert  into `players`(`p_username`,`p_id`,`token`,`p_last_action`) values 
+(NULL,'p1',NULL,NULL),
+(NULL,'p2',NULL,NULL);
 
 /* Trigger structure for table `game_status` */
 

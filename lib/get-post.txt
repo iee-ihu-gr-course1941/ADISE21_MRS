@@ -7,3 +7,16 @@ curl -X GET http://localhost/ADISE21_MRS/lib/moutzouris.php/players/p1
 curl -X GET http://localhost/ADISE21_MRS/lib/moutzouris.php/players/p2
 
 curl -X GET http://localhost/ADISE21_MRS/lib/moutzouris.php/status
+
+
+curl -X PUT -H "Content-Type: application/json" -d '{"p_username":"test2", "p_id":"p2"}' http://localhost/ADISE21_MRS/moutzouris.php/players/p2
+
+curl -X PUT -H "Content-Type: multipart/form-data;" -F "p_username":"test2" "p_id":"p2" http://localhost/ADISE21_MRS/lib/moutzouris.php/players/p2
+
+curl -d '{"p_username":"test2", "p_id":"p2"}' -H "Content-Type: application/json" -X PUT http://localhost/ADISE21_MRS/lib/moutzouris.php/players/p2
+
+curl -d '{"p_username":"test2", "p_id":"p2"}' -H "Content-Type: application/json" -X POST http://localhost/ADISE21_MRS/lib/moutzouris.php/players/p2
+
+curl -d "p_username=test2&p_id=p2" -H "Content-Type: application/x-www-form-urlencoded" -X POST http://localhost/ADISE21_MRS/lib/moutzouris.php/players/p2
+
+curl -X POST -H "Content-Type: application/json" -d '{"p_username":"test2", "p_id":"p2"}' http://localhost/ADISE21_MRS/lib/moutzouris.php/players
