@@ -11,7 +11,7 @@ if(gethostname()=='users.iee.ihu.gr') {
     echo "Connected successfully on users";
 } else {
         $mysqli = new mysqli($host, $user, $pass, $db);
-        echo "Connected successfully on localhost db";
+        //echo "Connected successfully on localhost db";
 }
 
 if ($mysqli->connect_errno) {

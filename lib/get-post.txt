@@ -1,1 +1,9 @@
 curl -X GET http://localhost/ADISE21_MRS/lib/moutzouris.php/board/
+
+curl -X GET http://localhost/ADISE21_MRS/lib/moutzouris.php/players/
+
+curl -X GET http://localhost/ADISE21_MRS/lib/moutzouris.php/players/p1
+
+curl -X GET http://localhost/ADISE21_MRS/lib/moutzouris.php/players/p2
+
+curl -X GET http://localhost/ADISE21_MRS/lib/moutzouris.php/status

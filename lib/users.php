@@ -37,7 +37,7 @@ function set_user($b,$input) {
 	$r = $res->fetch_all(MYSQLI_ASSOC);
 	if($r[0]['c']>0) {
 		header("HTTP/1.1 400 Bad Request");
-		print json_encode(['errormesg'=>"Player $b is already set. Please select another color."]);
+		print json_encode(['errormesg'=>"Player $b is already set. Please select another player."]);
 		exit;
 	}
 	$sql = 'update players set p_username=?, token=md5(CONCAT( ?, NOW()))  where p_id=?';
@@ -66,6 +66,8 @@ function handle_user($method, $b,$input) {
         set_user($b,$input);
     }
 }
+
+
 function current_color($token) {
 	
 	global $mysqli;
