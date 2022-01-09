@@ -2,14 +2,16 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 	<title>Μουτζούρης</title>
 	
 	<link href="bootstrap/bootstrap.min.css" rel="stylesheet">
 	<link href="css/moutzouris.css" rel="stylesheet">
 	<script src="bootstrap/jquery-3.2.1.min.js"></script>
     <script src="bootstrap/bootstrap.min.js"></script>
-	<script src="lib/moutzouris.js"></script>
+	<script src="js/moutzouris.js"></script>
     <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
 	<link href="jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet">
 	<!-- <script
@@ -28,7 +30,9 @@
     <div>
     	<h1>Μουτζούρης</h1>
     </div>
-
+	<div id='chess_board'>
+	</div>
+	<br/>
     <div id='game_initializer'>
     	<p>Δώσε όνομα χρήστη και διάλεξε παίκτη</p>
     	<input id='p_username'> 
@@ -42,7 +46,14 @@
 	</div>
 	<div id='game_info'>
 	</div>
-	<br/>
+	<!-- <div id='move_div'>
+		Δώσε κίνηση (x1 y1 x2 y2): <input id='the_move'>  <button id='do_move' class='btn btn-primary'>ΚΑΝΕ ΤΗΝ ΚΙΝΗΣΗ</button><br>
+		<br><br>
+		Δώσε κίνηση (x1 y1): <input id='the_move_src'> (x2 y2):
+		<select id='the_move_dest'></select>
+		<button id='do_move2' class='btn btn-primary'>ΚΑΝΕ ΤΗΝ ΚΙΝΗΣΗ 2</button><br>
+		</div>
+	<br/><br/><br/> --><br/>
 	<button id='moutzouris_reset' class='btn btn-primary'>ΕΝΑΡΞΗ/RESET</button>
 </body>
 </html>

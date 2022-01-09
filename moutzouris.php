@@ -1,8 +1,10 @@
 <?php
-require_once "../lib/dbconnect.php";
-require_once "../lib/board.php";
-require_once "../lib/game.php";
-require_once "../lib/users.php";
+require_once "./lib/dbconnect.php";
+require_once "./lib/board.php";
+require_once "./lib/game.php";
+require_once "./lib/users.php";
+
+//print "test moutzouris.php";
 
 $method = $_SERVER['REQUEST_METHOD'];
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
@@ -83,7 +85,9 @@ function handle_board($method/*,$input*/) {
                             print json_encode(['errormesg'=>"Method $method not allowed here."]);}
                     break;
             case 'p1': 
-            case 'p2': handle_user($method, $b,$input);
+            case 'p2': 
+                print "test";
+                handle_user($method, $b,$input);
                         break;
             default: header("HTTP/1.1 404 Not Found");
                     print json_encode(['errormesg'=>"Player $b not found."]);

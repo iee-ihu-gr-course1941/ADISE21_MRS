@@ -49,7 +49,7 @@ function fill_board() {
 } */
 
 function reset_board() {
-	$.ajax({url: "lib/moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST' /* ,  success: fill_board_by_data */ });
+	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST' /* ,  success: fill_board_by_data */ });
 	//$('#move_div').hide();
 	$('#game_initializer').show(2000);
 }
@@ -85,9 +85,10 @@ function reset_board() {
 	//draw_empty_board(p_id);
 	//fill_board();
 	
-	try{
-		console.log("inside log try");
-	$.ajax({url: "/lib/moutzouris.php/players/"+pid, 
+
+
+
+	$.ajax({url: "moutzouris.php/players/"+pid, 
 			method: 'PUT',
 			dataType: "json",
 			headers: {"X-Token": me.token},
@@ -95,9 +96,6 @@ function reset_board() {
 			data: JSON.stringify( {p_username: $('#p_username').val(), p_id: pid}),
 			success: login_result,
 			error: login_error});
-	}catch{
-		console.log("inside log");
-	}
 	alert('username ok');
 }
 
@@ -109,21 +107,15 @@ function login_result(data) {
 	game_status_update();
 }
 
-async function login_error(data,y,z,c) {
-	try {
-		console.log(await data);
-		var x = await data.responseJSON;
+function login_error(data,y,z,c) {
+		var x = data.responseJSON;
 		alert(x.errormesg);
-	}catch(e){
-		//console.log("inside log");
-		console.log(e);
-	}
 }
 
 function game_status_update() {
 	
 	clearTimeout(timer);
-	$.ajax({url: "lib/moutzouris.php/status/", success: update_status,headers: {"X-Token": me.token} });
+	$.ajax({url: "moutzouris.php/status/", success: update_status,headers: {"X-Token": me.token} });
 } 
 
  function update_status(data) {
