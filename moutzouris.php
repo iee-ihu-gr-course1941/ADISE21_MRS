@@ -4,8 +4,6 @@ require_once "./lib/board.php";
 require_once "./lib/game.php";
 require_once "./lib/users.php";
 
-/* print "test moutzouris.php";
-deleteDecks(); */
 
 $method = $_SERVER['REQUEST_METHOD'];
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
@@ -76,16 +74,7 @@ function handle_board($method/*,$input*/) {
     
 }
 
-    /*function handle_piece($method, $x,$y,$input) {
-        if($method=='GET') {
-            show_piece($x,$y);
-        } else if ($method=='PUT') {
-            move_piece($x,$y,$input['x'],$input['y'],  
-                       $input['token']);
-        }    
-  
     
-    }*/
 
     function handle_player($method, $p,$input) {
         switch ($b=array_shift($p)) {
