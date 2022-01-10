@@ -35,9 +35,9 @@ https://users.it.teithe.gr/~it164852/ADISE21_MRS/
 |`moutzouris.php/dealCards` | GET | - | Deals cards on players |
 |`moutzouris.php/board` | GET | - | Gets a shuffled deck with cards for moutzouris |
 |`moutzouris.php/reset` | GET | - | Resets game status, players and decks |
-|`moutzouris.php/deleteDecks` | GET | - | Resets decks (reset includes this one too) |
-|`moutzouris.php/deck1` | GET | Gets cards from deck 1 (Player 1) |
-|`moutzouris.php/deck2` | GET | Gets cards from deck 2 (Player 2) |
+|`moutzouris.php/deleteDecks` | GET | - | Resets decks (*reset* includes this one too) |
+|`moutzouris.php/deck1` | GET | - | Gets cards from deck 1 (Player 1) |
+|`moutzouris.php/deck2` | GET | - | Gets cards from deck 2 (Player 2) |
 |`amoutzouris.php/` | GET | body: Id of card | Gets a single card from deck |
 |`moutzouris.php/status` | GET | - | Gets game status |
 |`moutzouris.php/players` | GET | - | Gets players |
