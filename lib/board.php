@@ -103,6 +103,28 @@ function read_board() {
 	//return($res->fetch_all(MYSQLI_ASSOC));
 }
 
+function read_deck1() { 
+	global $mysqli;
+	$sql = 'select * from deck1';
+	$st = $mysqli->prepare($sql);
+	$st->execute();
+	$res = $st->get_result();
+	header('Content-type: application/json');
+	print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);
+	//return($res->fetch_all(MYSQLI_ASSOC));
+}
+
+function read_deck2() { 
+	global $mysqli;
+	$sql = 'select * from deck2';
+	$st = $mysqli->prepare($sql);
+	$st->execute();
+	$res = $st->get_result();
+	header('Content-type: application/json');
+	print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);
+	//return($res->fetch_all(MYSQLI_ASSOC));
+}
+
 //removes data from deck1, deck2 and cards_for_moutzouris
 function deleteDecks() { 
 	global $mysqli;

@@ -53,6 +53,10 @@ switch ($r=array_shift($request)) {
     break;          
     case 'dealCards': dealCardsToPlayers(); //deals cards to deck1 and deck2
     break; 
+    case 'deck1': read_deck1(); //reads cards from deck1
+    break; 
+    case 'deck2': read_deck2(); //reads cards from deck2
+    break;
 	default:  header("HTTP/1.1 404 Not Found");
                         exit;
     }
