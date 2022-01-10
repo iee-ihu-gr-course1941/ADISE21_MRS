@@ -1,0 +1,53 @@
+SELECT * 
+FROM cards_for_moutzouris
+ORDER BY RAND()
+LIMIT 20 OFFSET 20
+
+
+
+REPLACE INTO deck1 (SELECT * 
+FROM cards_for_moutzouris
+LIMIT 20 OFFSET 0);
+
+REPLACE INTO deck2 (SELECT * 
+FROM cards_for_moutzouris
+LIMIT 21 OFFSET 20);
+
+REPLACE INTO deck1 (SELECT * 
+FROM cards_for_moutzouris
+ORDER BY RAND()
+LIMIT 20 OFFSET 1);
+
+
+REPLACE INTO deck2 (SELECT * 
+FROM cards_for_moutzouris
+ORDER BY RAND()
+LIMIT 21 OFFSET 21);
+
+REPLACE INTO deck1 (SELECT * 
+FROM cards_for_moutzouris
+WHERE c_id>0 AND c_id < 21);
+
+REPLACE INTO deck2 (SELECT * 
+FROM cards_for_moutzouris
+WHERE c_id>20 AND c_id < 41);
+
+REPLACE INTO deck1 (SELECT * 
+FROM cards_for_moutzouris
+LIMIT 20 OFFSET 0);
+
+REPLACE INTO deck2 (SELECT * 
+FROM cards_for_moutzouris
+LIMIT 21 OFFSET 20);
+
+REPLACE INTO deck1 (SELECT * 
+FROM random
+LIMIT 20 OFFSET 0);
+
+REPLACE INTO deck2 (SELECT * 
+FROM random
+LIMIT 21 OFFSET 20);
+
+
+INSERT INTO cards_for_moutzouris (SELECT * 
+FROM cards_for_moutzouris_reset ORDER BY RAND());

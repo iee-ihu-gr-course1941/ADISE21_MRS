@@ -9,6 +9,12 @@ curl -X GET http://localhost/ADISE21_MRS/lib/moutzouris.php/players/p2
 curl -X GET http://localhost/ADISE21_MRS/lib/moutzouris.php/status
 
 
+
+curl -X GET https://users.it.teithe.gr/~it164852/ADISE21_MRS/moutzouris.php/players
+
+
+
+
 curl -X PUT -H "Content-Type: application/json" -d '{"p_username":"test2", "p_id":"p2"}' http://localhost/ADISE21_MRS/moutzouris.php/players/p2
 
 curl -X PUT -H "Content-Type: multipart/form-data;" -F "p_username":"test2" "p_id":"p2" http://localhost/ADISE21_MRS/lib/moutzouris.php/players/p2
