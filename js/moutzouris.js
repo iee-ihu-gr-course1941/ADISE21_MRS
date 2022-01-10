@@ -20,61 +20,13 @@ $(function () {
 });
 
 
-/* function draw_empty_board(p) {
-	
-	if(p!='p2') {p='p1';}
-	var draw_init = {
-		'p1': {i1:8,i2:0,istep:-1,j1:1,j2:9,jstep:1},
-		'p2': {i1:1,i2:9,istep:1, j1:8,j2:0,jstep:-1}
-	};
-	var s=draw_init[p];
-	var t='<table id="moutzouris_table">';
-	for(var i=s.i1;i!=s.i2;i+=s.istep) {
-		t += '<tr>';
-		for(var j=s.j1;j!=s.j2;j+=s.jstep) {
-			t += '<td class="moutzouris_square" id="square_'+j+'_'+i+'">' + j +','+i+'</td>'; 
-		}
-		t+='</tr>';
-	}
-	t+='</table>';
-	
-	$('#moutzouris_board').html(t);
-	$('.moutzouris_square').click(click_on_piece);
-}
-
-function fill_board() {
-	$.ajax({url: "moutzouris.php/board/", 
-		headers: {"X-Token": me.token},
-		success: fill_board_by_data });
-} */
 
 function reset_board() {
 	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST' /* ,  success: fill_board_by_data */ });
 	//$('#move_div').hide();
 	$('#game_initializer').show(2000);
 }
-/*function fill_board_by_data(data) {
-	board=data;
-	for(var i=0;i<data.length;i++) {
-		var o = data[i];
-		var id = '#square_'+ o.x +'_' + o.y;
-		var c = (o.piece!=null)?o.piece_color + o.piece:'';
-		var pc= (o.piece!=null)?'piece'+o.piece_color:'';
-		var im = (o.piece!=null)?'<img class="piece '+pc+'" src="images/'+c+'.png">':'';
-		$(id).addClass(o.b_color+'_square').html(im);
-	}
- 
-	$('.ui-droppable').droppable( "disable" );
-		
-	if(me && me.piece_color!=null) {
-		$('.piece'+me.piece_color).draggable({start: start_dragging, stop: end_dragging, revert:true});
-	}
-	if(me.piece_color!=null && game_status.p_turn==me.piece_color) {
-		$('#move_div').show(1000);
-	} else {
-		$('#move_div').hide(1000);
-	}
-}*/
+
 
     function login_to_game() {
 	if($('#p_username').val()=='') {
@@ -85,9 +37,6 @@ function reset_board() {
 	//draw_empty_board(p_id);
 	//fill_board();
 	
-
-
-
 	$.ajax({url: "moutzouris.php/players/"+pid, 
 			method: 'PUT',
 			dataType: "json",
@@ -153,6 +102,57 @@ function update_info(){
 	
 }
 
+/* function draw_empty_board(p) {
+	
+	if(p!='p2') {p='p1';}
+	var draw_init = {
+		'p1': {i1:8,i2:0,istep:-1,j1:1,j2:9,jstep:1},
+		'p2': {i1:1,i2:9,istep:1, j1:8,j2:0,jstep:-1}
+	};
+	var s=draw_init[p];
+	var t='<table id="moutzouris_table">';
+	for(var i=s.i1;i!=s.i2;i+=s.istep) {
+		t += '<tr>';
+		for(var j=s.j1;j!=s.j2;j+=s.jstep) {
+			t += '<td class="moutzouris_square" id="square_'+j+'_'+i+'">' + j +','+i+'</td>'; 
+		}
+		t+='</tr>';
+	}
+	t+='</table>';
+	
+	$('#moutzouris_board').html(t);
+	$('.moutzouris_square').click(click_on_piece);
+}
+
+function fill_board() {
+	$.ajax({url: "moutzouris.php/board/", 
+		headers: {"X-Token": me.token},
+		success: fill_board_by_data });
+} */
+
+
+/*function fill_board_by_data(data) {
+	board=data;
+	for(var i=0;i<data.length;i++) {
+		var o = data[i];
+		var id = '#square_'+ o.x +'_' + o.y;
+		var c = (o.piece!=null)?o.piece_color + o.piece:'';
+		var pc= (o.piece!=null)?'piece'+o.piece_color:'';
+		var im = (o.piece!=null)?'<img class="piece '+pc+'" src="images/'+c+'.png">':'';
+		$(id).addClass(o.b_color+'_square').html(im);
+	}
+ 
+	$('.ui-droppable').droppable( "disable" );
+		
+	if(me && me.piece_color!=null) {
+		$('.piece'+me.piece_color).draggable({start: start_dragging, stop: end_dragging, revert:true});
+	}
+	if(me.piece_color!=null && game_status.p_turn==me.piece_color) {
+		$('#move_div').show(1000);
+	} else {
+		$('#move_div').hide(1000);
+	}
+}*/
 /*function do_move() {
 	var s = $('#the_move').val();
 	

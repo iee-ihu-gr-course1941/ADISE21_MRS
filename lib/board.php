@@ -69,14 +69,27 @@ function move_piece($x,$y,$x2,$y2,$token) {
 	}
 }*/
 
-
+//έχει θέμα η function στον users -- δουλεύει μόνο τοπικά
 //θα φέρει τις κάρτες από τον cards_for_moutzouris_reset
 //στον cards_for_moutzouris
-function reset_board() {
+function reset_board_local() {
 	global $mysqli;
 	$sql = 'call clean_deck()';
 	$mysqli->query($sql);
 }
+
+
+//new reset 
+function reset_board() {
+	global $mysqli;
+	$sql = 'UPDATE players SET p_username=NULL, token=NULL';
+	$mysqli->query($sql);
+	$sql = "UPDATE game_status SET status='not active', p_turn=NULL, result=NULL";
+	$mysqli->query($sql);
+	//καλεί και τη διαγραφή πινάκων καρτών
+	deleteDecks();
+}
+
 
 //read deck cards_for_moutzouris
 function read_board() { 
@@ -90,6 +103,37 @@ function read_board() {
 	//return($res->fetch_all(MYSQLI_ASSOC));
 }
 
+//removes data from deck1, deck2 and cards_for_moutzouris
+function deleteDecks() { 
+	global $mysqli;
+	$sql = 'delete from cards_for_moutzouris';
+	$mysqli->query($sql);
+	$sql = 'delete from deck1';
+	$mysqli->query($sql);
+	$sql = 'delete from deck2';
+	$mysqli->query($sql);
+	
+}
+
+
+function dealCardsToPlayers() { 
+	global $mysqli;
+	//getting shuffled cards from cards_for_moutzouris_reset to cards_for_moutzouris
+	$sql = 'INSERT INTO cards_for_moutzouris (SELECT * 
+	FROM cards_for_moutzouris_reset ORDER BY RAND());';
+	$mysqli->query($sql);
+	//getting 0-20 cards from cards_for_moutzouris to deck1
+	$sql = 'REPLACE INTO deck1 (SELECT * 
+	FROM cards_for_moutzouris
+	LIMIT 20 OFFSET 0);';
+	$mysqli->query($sql);
+	//getting 21-41 cards from cards_for_moutzouris to deck2
+	$sql = 'REPLACE INTO deck2 (SELECT * 
+	FROM cards_for_moutzouris
+	LIMIT 21 OFFSET 20);';
+	$mysqli->query($sql);
+	
+}
 
 
 

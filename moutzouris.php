@@ -4,7 +4,8 @@ require_once "./lib/board.php";
 require_once "./lib/game.php";
 require_once "./lib/users.php";
 
-//print "test moutzouris.php";
+/* print "test moutzouris.php";
+deleteDecks(); */
 
 $method = $_SERVER['REQUEST_METHOD'];
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
@@ -28,6 +29,7 @@ if(isset($_SERVER['HTTP_X_TOKEN'])) {
 
 
 switch ($r=array_shift($request)) {
+    //gettings all cards shuffled from cards_from_moutzouris
     case 'board' : 
         switch ($b=array_shift($request)) {
             case '':
@@ -46,7 +48,11 @@ switch ($r=array_shift($request)) {
 	case 'players': handle_player($method, $request,$input);
 			    break;
     case 'reset': reset_board();
-    break;             
+    break;     
+    case 'deleteDecks': deleteDecks(); //removes data from deck1, deck2 and cards_for_moutzouris
+    break;          
+    case 'dealCards': dealCardsToPlayers(); //deals cards to deck1 and deck2
+    break; 
 	default:  header("HTTP/1.1 404 Not Found");
                         exit;
     }
