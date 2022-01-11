@@ -22,7 +22,8 @@ function check_abort() {
 	
 	$sql = "update game_status set status='aborded', 
 		result=if(p_turn='p1','p2','p1'),
-		p_turn=null where p_turn is not null and last_change<(now()-INTERVAL 5 MINUTE) and status='started'";
+		p_turn=null where p_turn is not null and last_change<(now()-INTERVAL 5 MINUTE) 
+		and status='started'";
 	$st = $mysqli->prepare($sql);
 	$r = $st->execute();
 }
@@ -32,7 +33,6 @@ function update_game_status() {
 	global $mysqli;
 	
 	$status = read_status();
-	
 	
 	$new_status=null;
 	$new_turn=null;

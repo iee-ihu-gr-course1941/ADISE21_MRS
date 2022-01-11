@@ -1,6 +1,8 @@
-curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/board/
+curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/board
 
-curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/players/
+curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/reset
+
+curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/players
 
 curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/players/p1
 
@@ -14,6 +16,8 @@ curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/deck1
 
 curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/deck2
 
+curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/dealCards
+
 
 
 curl -X GET https://users.it.teithe.gr/~it164852/ADISE21_MRS/moutzouris.php/players
@@ -21,14 +25,7 @@ curl -X GET https://users.it.teithe.gr/~it164852/ADISE21_MRS/moutzouris.php/play
 
 
 
-curl -X PUT -H "Content-Type: application/json" -d '{"p_username":"test2", "p_id":"p2"}' http://localhost/ADISE21_MRS/moutzouris.php/players/p2
+curl -X PUT http://localhost/ADISE21_MRS/moutzouris.php/players/p2 -d "{\"p_username\":\"test2\", \"p_id\":\"p2\"}"
 
-curl -X PUT -H "Content-Type: multipart/form-data;" -F "p_username":"test2" "p_id":"p2" http://localhost/ADISE21_MRS/lib/moutzouris.php/players/p2
+curl -X PUT http://localhost/ADISE21_MRS/moutzouris.php/players/p1 -d "{\"p_username\":\"test1\", \"p_id\":\"p1\"}"
 
-curl -d '{"p_username":"test2", "p_id":"p2"}' -H "Content-Type: application/json" -X PUT http://localhost/ADISE21_MRS/lib/moutzouris.php/players/p2
-
-curl -d '{"p_username":"test2", "p_id":"p2"}' -H "Content-Type: application/json" -X POST http://localhost/ADISE21_MRS/lib/moutzouris.php/players/p2
-
-curl -d "p_username=test2&p_id=p2" -H "Content-Type: application/x-www-form-urlencoded" -X POST http://localhost/ADISE21_MRS/lib/moutzouris.php/players/p2
-
-curl -X POST -H "Content-Type: application/json" -d '{"p_username":"test2", "p_id":"p2"}' http://localhost/ADISE21_MRS/lib/moutzouris.php/players
