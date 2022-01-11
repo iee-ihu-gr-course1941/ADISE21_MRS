@@ -5,7 +5,7 @@ class Database
   private $host = 'localhost';
   private $db_name = 'adise21_mrs';
   private $username = 'root';
-  private $password = '123456';
+  private $password = '';
   private $conn;
 
   //DB Connect
