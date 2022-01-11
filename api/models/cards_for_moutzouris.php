@@ -4,9 +4,10 @@
  * @OA\Info(title="ADISE_21API", version="1.0")
  */
 
-
 class cards_for_moutzouris
 {
+
+
     //DB stuff
     private $conn;
 
@@ -15,6 +16,8 @@ class cards_for_moutzouris
     public $c_name;
     public $c_value;
     public $c_suit;
+
+    public $input = json_decode(file_get_contents('php://input'), true);
 
     // Constructor with DB
     public function __construct($db)
@@ -81,7 +84,7 @@ class cards_for_moutzouris
 
 
     /**
-     * @OA\Delete(path="ADISE21_MRS/api/cards/delete.php", tags={"cards_for_moutzouris"},
+     * @OA\Delete(path="/ADISE21_MRS/api/cards/delete.php", tags={"cards_for_moutzouris"},
      * @OA\Response (response="200", description="Success"),
      *  @OA\Response (response="404", description="Not Found")
      * )
@@ -110,12 +113,11 @@ class cards_for_moutzouris
 
 
     /**
-     * @OA\Get(path="ADISE21_MRS/api/cards/read_single.php?id=10", tags={"cards_for_moutzouris"},
+     * @OA\Get(path="/ADISE21_MRS/api/cards/read_single.php?id=10", tags={"cards_for_moutzouris"},
      * @OA\Response (response="200", description="Success"),
      *  @OA\Response (response="404", description="Not Found")
      * )
      */
-
 
 
     //Get single card
