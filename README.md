@@ -41,7 +41,7 @@ https://users.it.teithe.gr/~it164852/ADISE21_MRS/
 |`moutzouris.php/delete1` | DELETE | - | Deletes double cards (cards with same value and name) from deck1 (Player 1) |
 |`moutzouris.php/delete2` | DELETE | - | Deletes double cards (cards with same value and name) from deck2 (Player 2) |
 |`moutzouris.php/pick1` | POST | - | Inserts a random card from deck2 to deck1 and then deletes that card from deck2 |
-|`moutzouris.php/pick2` | POST  | - |inserts a random card from deck1 to deck2 and then deletes that card from deck1 |
+|`moutzouris.php/pick2` | POST  | - |Inserts a random card from deck1 to deck2 and then deletes that card from deck1 |
 |`amoutzouris.php/` | GET | body: Id of card | Gets a single card from deck |
 |`moutzouris.php/status` | GET | - | Gets game status |
 |`moutzouris.php/players` | GET | - | Gets players |
