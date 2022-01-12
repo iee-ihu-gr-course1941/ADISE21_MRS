@@ -13,6 +13,7 @@
 	print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);
 }
    
+
 function move_piece($x,$y,$x2,$y2,$token) {
 	
 	if($token==null || $token=='') {
@@ -57,6 +58,8 @@ function move_piece($x,$y,$x2,$y2,$token) {
 	exit;
 }*/
 
+
+
 /*function show_board($input) {
 	global $mysqli;
 	
@@ -68,6 +71,8 @@ function move_piece($x,$y,$x2,$y2,$token) {
 		print json_encode(read_board(), JSON_PRETTY_PRINT);
 	}
 }*/
+
+
 
 //έχει θέμα η function στον users -- δουλεύει μόνο τοπικά
 //θα φέρει τις κάρτες από τον cards_for_moutzouris_reset
@@ -137,19 +142,15 @@ function read_deck2()
 function delete_double_deck1()
 {
 	global $mysqli;
-
 	// Create query
 	$query = 'DELETE FROM deck1 WHERE deck1.c_value IN 
 	(SELECT c_value FROM deck1 GROUP BY c_value HAVING COUNT(*) > 1)
 
     ';
-
 	// Prepare statement
 	$stmt = $mysqli->prepare($query);
-
 	// Execute query
 	$stmt->execute();
-
 	if ($stmt->execute()) {
 		echo json_encode(
 			array('message' => 'Double Cards From Deck1 Deleted')
@@ -164,7 +165,6 @@ function delete_double_deck1()
 function delete_double_deck2()
 {
 	global $mysqli;
-
 	// Create query
 	$query = 'DELETE FROM deck2 WHERE deck2.c_value IN 
 	(SELECT c_value FROM deck2 GROUP BY c_value HAVING COUNT(*) > 1)
@@ -173,10 +173,8 @@ function delete_double_deck2()
 
 	// Prepare statement
 	$stmt = $mysqli->prepare($query);
-
 	// Execute query
 	$stmt->execute();
-
 	if ($stmt->execute()) {
 		echo json_encode(
 			array('message' => 'Double Cards From Deck2 Deleted')
@@ -191,78 +189,42 @@ function delete_double_deck2()
 function pick_card1()
 {
 	global $mysqli;
-
-	$sql = 'INSERT INTO deck1 (SELECT * FROM deck2 ORDER BY rand() LIMIT 1)
-    ;
-    ';
+	$sql = 'INSERT INTO deck1 (SELECT * FROM deck2 ORDER BY rand() LIMIT 1);';
 	$st = $mysqli->prepare($sql);
-
 	$st->execute();
-
 	if ($st->execute()) {
-		echo json_encode(
-			array('message' => 'Card From Deck 2 Picked')
-		);
+		echo json_encode(array('message' => 'Card From Deck 2 Picked'));
 	} else {
-		echo json_encode(
-			array('message' => 'Card From Deck 2 Not Picked')
-		);
+		echo json_encode(array('message' => 'Card From Deck 2 Not Picked'));
 	}
-
-	$sql2 = 'DELETE FROM deck2 WHERE EXISTS (SELECT * FROM deck1 WHERE deck1.c_id = deck2.c_id)
-    ';
-
+	$sql2 = 'DELETE FROM deck2 WHERE EXISTS (SELECT * FROM deck1 WHERE deck1.c_id = deck2.c_id)';
 	$st2 = $mysqli->prepare($sql2);
-
 	$st2->execute();
-
 	if ($st2->execute()) {
-		echo json_encode(
-			array('message' => 'Picked Card Deleted From Deck2')
-		);
+		echo json_encode(array('message' => 'Picked Card Deleted From Deck2'));
 	} else {
-		echo json_encode(
-			array('message' => 'Picked Card Not Deleted From Deck2')
-		);
+		echo json_encode(array('message' => 'Picked Card Not Deleted From Deck2'));
 	}
 }
 
 function pick_card2()
 {
 	global $mysqli;
-
-	$sql = 'INSERT INTO deck2 (SELECT * FROM deck1 ORDER BY rand() LIMIT 1)
-    ;
-    ';
+	$sql = 'INSERT INTO deck2 (SELECT * FROM deck1 ORDER BY rand() LIMIT 1);';
 	$st = $mysqli->prepare($sql);
-
 	$st->execute();
-
 	if ($st->execute()) {
-		echo json_encode(
-			array('message' => 'Card From Deck 1 Picked')
-		);
+		echo json_encode(array('message' => 'Card From Deck 1 Picked'));
 	} else {
-		echo json_encode(
-			array('message' => 'Card From Deck 1 Not Picked')
-		);
+		echo json_encode(array('message' => 'Card From Deck 1 Not Picked'));
 	}
-
-	$sql2 = 'DELETE FROM deck1 WHERE EXISTS (SELECT * FROM deck2 WHERE deck2.c_id = deck1.c_id)
-    ';
-
+	$sql2 = 'DELETE FROM deck1 WHERE EXISTS (SELECT * FROM deck2 WHERE deck2.c_id = deck1.c_id)';
 	$st2 = $mysqli->prepare($sql2);
-
 	$st2->execute();
-
 	if ($st2->execute()) {
-		echo json_encode(
-			array('message' => 'Picked Card Deleted From Deck1')
-		);
+		echo json_encode(array('message' => 'Picked Card Deleted From Deck1'));
 	} else {
-		echo json_encode(
-			array('message' => 'Picked Card Not Deleted From Deck1')
-		);
+		echo json_encode(array('message' => 'Picked Card Not Deleted From Deck1'));
 	}
 }
 
@@ -276,6 +238,8 @@ function deleteDecks()
 	$mysqli->query($sql);
 	$sql = 'delete from deck2';
 	$mysqli->query($sql);
+
+	echo json_encode(array('message' => 'decks deleted'));
 }
 
 
@@ -297,12 +261,41 @@ function dealCardsToPlayers()
 	LIMIT 21 OFFSET 20);';
 	$mysqli->query($sql);
 
-	echo json_encode(
-		array('message' => 'Cards Dealt To Players')
-	);
+	echo json_encode(array('message' => 'Cards Dealt To Players'));
 }
 
+function play($token)
+{ //from move_piece
+	//αν ο παίκτης δεν έχει token δεν πρέπει να μπορεί να παίξει
+	if ($token == null || $token == '') {
+		header("HTTP/1.1 400 Bad Request");
+		print json_encode(['errormesg' => "token is not set."]);
+		exit;
+	}
 
+	//checks if valid player
+	// $player = current_player($token);
+	// if ($player == null) {
+	// 	header("HTTP/1.1 400 Bad Request");
+	// 	print json_encode(['errormesg' => "You are not a player of this game."]);
+	// 	exit;
+	// }
+
+	// //αν δεν είναι started
+	// $status = read_status();
+	// if ($status['status'] != 'started') {
+	// 	header("HTTP/1.1 400 Bad Request");
+	// 	print json_encode(['errormesg' => "Game is not in action."]);
+	// 	exit;
+	// }
+
+	// //ελέγχει αν πάει να παίξει ο σωστός παίκτης στη σειρά του
+	// if ($status['p_turn'] != $player) {
+	// 	header("HTTP/1.1 400 Bad Request");
+	// 	print json_encode(['errormesg' => "It is not your turn."]);
+	// 	exit;
+	// }
+}
 
 
 /*function convert_board(&$orig_board) {

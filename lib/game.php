@@ -1,11 +1,8 @@
 <?php
 
 function show_status() {
-	
 	global $mysqli;
-	
 	check_abort();
-	
 	$sql = 'select * from game_status';
 	$st = $mysqli->prepare($sql);
 
@@ -31,9 +28,7 @@ function check_abort() {
 
 function update_game_status() {
 	global $mysqli;
-	
 	$status = read_status();
-	
 	$new_status=null;
 	$new_turn=null;
 	
@@ -50,7 +45,6 @@ function update_game_status() {
 		}
 	}
 
-	
 	$sql = 'select count(*) as c from players where p_username is not null';
 	$st = $mysqli->prepare($sql);
 	$st->execute();
@@ -73,16 +67,12 @@ function update_game_status() {
 	$st->bind_param('ss',$new_status,$new_turn);
 	$st->execute();
 	
-	
-	
 }
 
 function read_status() {
 	global $mysqli;
-	
 	$sql = 'select * from game_status';
 	$st = $mysqli->prepare($sql);
-
 	$st->execute();
 	$res = $st->get_result();
 	$status = $res->fetch_assoc();
