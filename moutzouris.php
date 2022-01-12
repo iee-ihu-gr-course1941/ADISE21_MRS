@@ -26,9 +26,8 @@ if (isset($_SERVER['HTTP_X_TOKEN'])) {
 // print_r($request);
 
 
-switch ($r = array_shift($request)) {
-        //gettings all cards shuffled from cards_from_moutzouris
-    case 'board':
+switch ($r = array_shift($request)) {       
+    case 'board':  //gettings all cards shuffled from cards_from_moutzouris
         switch ($b = array_shift($request)) {
             case '':
             case null:
@@ -41,20 +40,17 @@ switch ($r = array_shift($request)) {
                 break;
         }
         break;
-    case 'status':
-        if (sizeof($request) == 0) {
-            handle_status($method);
-        } else {
-            header("HTTP/1.1 404 Not Found");
-        }
+    case 'status': //returns game status - only GET
+        if(sizeof($request)==0) {handle_status($method);}
+        else {header("HTTP/1.1 404 Not Found");}
         break;
     case 'players':
-        handle_player($method, $request, $input);
+        handle_player($method, $request, $input); //Gets users OR Gets one user (p1/p2) OR Sets user with PUT
         break;
     case 'reset':
         reset_board();
         break;
-    case 'deleteDecks':
+    case 'deleteDecks':  
         deleteDecks(); //removes data from deck1, deck2 and cards_for_moutzouris
         break;
     case 'dealCards':

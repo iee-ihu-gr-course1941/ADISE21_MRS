@@ -13,6 +13,7 @@
 	print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);
 }
    
+
 function move_piece($x,$y,$x2,$y2,$token) {
 	
 	if($token==null || $token=='') {
@@ -57,6 +58,8 @@ function move_piece($x,$y,$x2,$y2,$token) {
 	exit;
 }*/
 
+
+
 /*function show_board($input) {
 	global $mysqli;
 	
@@ -69,11 +72,12 @@ function move_piece($x,$y,$x2,$y2,$token) {
 	}
 }*/
 
+
+
 //έχει θέμα η function στον users -- δουλεύει μόνο τοπικά
 //θα φέρει τις κάρτες από τον cards_for_moutzouris_reset
 //στον cards_for_moutzouris
-function reset_board_local()
-{
+function reset_board_local(){
 	global $mysqli;
 	$sql = 'call clean_deck()';
 	$mysqli->query($sql);
@@ -81,8 +85,7 @@ function reset_board_local()
 
 
 //new reset 
-function reset_board()
-{
+function reset_board(){
 	global $mysqli;
 	$sql = 'UPDATE players SET p_username=NULL, token=NULL';
 	$mysqli->query($sql);
@@ -92,14 +95,12 @@ function reset_board()
 	deleteDecks();
 
 	echo json_encode(
-		array('message' => 'Board Reseted')
-	);
+		array('message' => 'Board Reseted'));
 }
 
 
 //read deck cards_for_moutzouris
-function read_board()
-{
+function read_board(){
 	global $mysqli;
 	$sql = 'select * from cards_for_moutzouris';
 	$st = $mysqli->prepare($sql);
@@ -110,8 +111,7 @@ function read_board()
 	//return($res->fetch_all(MYSQLI_ASSOC));
 }
 
-function read_deck1()
-{
+function read_deck1(){
 	global $mysqli;
 	$sql = 'select * from deck1';
 	$st = $mysqli->prepare($sql);
@@ -122,8 +122,7 @@ function read_deck1()
 	//return($res->fetch_all(MYSQLI_ASSOC));
 }
 
-function read_deck2()
-{
+function read_deck2(){
 	global $mysqli;
 	$sql = 'select * from deck2';
 	$st = $mysqli->prepare($sql);
@@ -134,141 +133,87 @@ function read_deck2()
 	//return($res->fetch_all(MYSQLI_ASSOC));
 }
 
-function delete_double_deck1()
-{
+function delete_double_deck1(){
 	global $mysqli;
-
 	// Create query
 	$query = 'DELETE FROM deck1
     WHERE c_id NOT IN
     (SELECT max_id FROM (SELECT MAX(c_id) max_id FROM deck1 GROUP BY c_value) M)
     ';
-
 	// Prepare statement
 	$stmt = $mysqli->prepare($query);
-
 	// Execute query
 	$stmt->execute();
-
 	if ($stmt->execute()) {
 		echo json_encode(
-			array('message' => 'Double Cards From Deck1 Deleted')
-		);
+			array('message' => 'Double Cards From Deck1 Deleted'));
 	} else {
 		echo json_encode(
-			array('message' => 'Double Cards From Deck1 Not Deleted')
-		);
+			array('message' => 'Double Cards From Deck1 Not Deleted'));
 	}
 }
 
-function delete_double_deck2()
-{
+function delete_double_deck2(){
 	global $mysqli;
-
 	// Create query
 	$query = 'DELETE FROM deck2
     WHERE c_id NOT IN
-    (SELECT max_id FROM (SELECT MAX(c_id) max_id FROM deck2 GROUP BY c_value) M)
-    ';
-
+    (SELECT max_id FROM (SELECT MAX(c_id) max_id FROM deck2 GROUP BY c_value) M)';
 	// Prepare statement
 	$stmt = $mysqli->prepare($query);
-
 	// Execute query
 	$stmt->execute();
-
 	if ($stmt->execute()) {
 		echo json_encode(
-			array('message' => 'Double Cards From Deck2 Deleted')
-		);
+			array('message' => 'Double Cards From Deck2 Deleted'));
 	} else {
 		echo json_encode(
-			array('message' => 'Double Cards From Deck2 Not Deleted')
-		);
+			array('message' => 'Double Cards From Deck2 Not Deleted'));
 	}
 }
 
-function pick_card1()
-{
+function pick_card1(){
 	global $mysqli;
-
-	$sql = 'INSERT INTO deck1 (SELECT * FROM deck2 ORDER BY rand() LIMIT 1)
-    ;
-    ';
+	$sql = 'INSERT INTO deck1 (SELECT * FROM deck2 ORDER BY rand() LIMIT 1);';
 	$st = $mysqli->prepare($sql);
-
 	$st->execute();
-
 	if ($st->execute()) {
-		echo json_encode(
-			array('message' => 'Card From Deck 2 Picked')
-		);
+		echo json_encode(array('message' => 'Card From Deck 2 Picked'));
 	} else {
-		echo json_encode(
-			array('message' => 'Card From Deck 2 Not Picked')
-		);
+		echo json_encode(array('message' => 'Card From Deck 2 Not Picked'));
 	}
-
-	$sql2 = 'DELETE FROM deck2 WHERE EXISTS (SELECT * FROM deck1 WHERE deck1.c_id = deck2.c_id)
-    ';
-
+	$sql2 = 'DELETE FROM deck2 WHERE EXISTS (SELECT * FROM deck1 WHERE deck1.c_id = deck2.c_id)';
 	$st2 = $mysqli->prepare($sql2);
-
 	$st2->execute();
-
 	if ($st2->execute()) {
-		echo json_encode(
-			array('message' => 'Picked Card Deleted From Deck2')
-		);
+		echo json_encode(array('message' => 'Picked Card Deleted From Deck2'));
 	} else {
-		echo json_encode(
-			array('message' => 'Picked Card Not Deleted From Deck2')
-		);
+		echo json_encode(array('message' => 'Picked Card Not Deleted From Deck2'));
 	}
 }
 
-function pick_card2()
-{
+function pick_card2(){
 	global $mysqli;
-
-	$sql = 'INSERT INTO deck2 (SELECT * FROM deck1 ORDER BY rand() LIMIT 1)
-    ;
-    ';
+	$sql = 'INSERT INTO deck2 (SELECT * FROM deck1 ORDER BY rand() LIMIT 1);';
 	$st = $mysqli->prepare($sql);
-
 	$st->execute();
-
 	if ($st->execute()) {
-		echo json_encode(
-			array('message' => 'Card From Deck 1 Picked')
-		);
+		echo json_encode(array('message' => 'Card From Deck 1 Picked'));
 	} else {
-		echo json_encode(
-			array('message' => 'Card From Deck 1 Not Picked')
-		);
+		echo json_encode(array('message' => 'Card From Deck 1 Not Picked'));
 	}
-
-	$sql2 = 'DELETE FROM deck1 WHERE EXISTS (SELECT * FROM deck2 WHERE deck2.c_id = deck1.c_id)
-    ';
-
+	$sql2 = 'DELETE FROM deck1 WHERE EXISTS (SELECT * FROM deck2 WHERE deck2.c_id = deck1.c_id)';
 	$st2 = $mysqli->prepare($sql2);
-
 	$st2->execute();
-
 	if ($st2->execute()) {
-		echo json_encode(
-			array('message' => 'Picked Card Deleted From Deck1')
-		);
+		echo json_encode(array('message' => 'Picked Card Deleted From Deck1'));
 	} else {
-		echo json_encode(
-			array('message' => 'Picked Card Not Deleted From Deck1')
-		);
+		echo json_encode(array('message' => 'Picked Card Not Deleted From Deck1'));
 	}
 }
 
 //removes data from deck1, deck2 and cards_for_moutzouris
-function deleteDecks()
-{
+function deleteDecks(){
 	global $mysqli;
 	$sql = 'delete from cards_for_moutzouris';
 	$mysqli->query($sql);
@@ -276,11 +221,12 @@ function deleteDecks()
 	$mysqli->query($sql);
 	$sql = 'delete from deck2';
 	$mysqli->query($sql);
+
+	echo json_encode(array('message' => 'decks deleted'));
 }
 
 
-function dealCardsToPlayers()
-{
+function dealCardsToPlayers(){
 	global $mysqli;
 	//getting shuffled cards from cards_for_moutzouris_reset to cards_for_moutzouris
 	$sql = 'INSERT INTO cards_for_moutzouris (SELECT * 
@@ -297,12 +243,43 @@ function dealCardsToPlayers()
 	LIMIT 21 OFFSET 20);';
 	$mysqli->query($sql);
 
-	echo json_encode(
-		array('message' => 'Cards Dealt To Players')
-	);
+	echo json_encode(array('message' => 'Cards Dealt To Players'));
 }
 
+function play($token){ //from move_piece
+	//αν ο παίκτης δεν έχει token δεν πρέπει να μπορεί να παίξει
+	if($token==null || $token=='') {
+		header("HTTP/1.1 400 Bad Request");
+		print json_encode(['errormesg'=>"token is not set."]);
+		exit;
+	}
 
+	//checks if valid player
+	$player = current_player($token);
+	if($player==null ) {
+		header("HTTP/1.1 400 Bad Request");
+		print json_encode(['errormesg'=>"You are not a player of this game."]);
+		exit;
+	}
+
+	//αν δεν είναι started
+	$status = read_status();
+	if($status['status']!='started') {
+		header("HTTP/1.1 400 Bad Request");
+		print json_encode(['errormesg'=>"Game is not in action."]);
+		exit;
+	}
+
+	//ελέγχει αν πάει να παίξει ο σωστός παίκτης στη σειρά του
+	if($status['p_turn']!=$player) {
+		header("HTTP/1.1 400 Bad Request");
+		print json_encode(['errormesg'=>"It is not your turn."]);
+		exit;
+	}
+
+
+
+}
 
 
 /*function convert_board(&$orig_board) {
