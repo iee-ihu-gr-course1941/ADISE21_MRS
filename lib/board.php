@@ -191,7 +191,6 @@ function pick_card1()
 	global $mysqli;
 	$sql = 'INSERT INTO deck1 (SELECT * FROM deck2 ORDER BY rand() LIMIT 1);';
 	$st = $mysqli->prepare($sql);
-	$st->execute();
 	if ($st->execute()) {
 		echo json_encode(array('message' => 'Card From Deck 2 Picked'));
 	} else {
@@ -212,7 +211,6 @@ function pick_card2()
 	global $mysqli;
 	$sql = 'INSERT INTO deck2 (SELECT * FROM deck1 ORDER BY rand() LIMIT 1);';
 	$st = $mysqli->prepare($sql);
-	$st->execute();
 	if ($st->execute()) {
 		echo json_encode(array('message' => 'Card From Deck 1 Picked'));
 	} else {
