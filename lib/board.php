@@ -144,7 +144,7 @@ function delete_double_deck1()
 	global $mysqli;
 	// Create query
 	$query = 'DELETE FROM deck1 WHERE deck1.c_value IN 
-	(SELECT c_value FROM deck1 GROUP BY c_value HAVING COUNT(*) > 1)
+	(SELECT c_value FROM deck1 GROUP BY c_value HAVING COUNT(*) = 2)
 
     ';
 	// Prepare statement
@@ -167,7 +167,7 @@ function delete_double_deck2()
 	global $mysqli;
 	// Create query
 	$query = 'DELETE FROM deck2 WHERE deck2.c_value IN 
-	(SELECT c_value FROM deck2 GROUP BY c_value HAVING COUNT(*) > 1)
+	(SELECT c_value FROM deck2 GROUP BY c_value HAVING COUNT(*) = 2)
 
     ';
 
