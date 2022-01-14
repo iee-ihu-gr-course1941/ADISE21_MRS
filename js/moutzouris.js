@@ -11,10 +11,12 @@ $(function () {
 	$('#deck_div').hide();
 	$('#moutzouris_start').hide();
 	$('#moutzouris_dealCards').hide();
+	$('.play_buttons').hide();
+
 
 	$('#moutzouris_login').click( login_to_game);
 	$('#moutzouris_reset').click( reset_board);
-	$('#moutzouris_dealCards').click(showDecks);
+	$('#moutzouris_dealCards').click(dealCards);
 	$('#moutzouris_start').click(show_empty_decks);
 	//$('#moutzouris_start').click(showDecks);
 	
@@ -26,8 +28,8 @@ $(function () {
 	//$('#do_move2').click( do_move2);
 });
 
-
-const showDecks = async function(){
+//εμφανίζει-μοιράζει τις κάρτες στους παίκτες
+const dealCards = async function(){
 	
     try {
          await fetch('http://localhost/ADISE21_MRS/moutzouris.php/dealCards'); 
@@ -56,6 +58,8 @@ const showDecks = async function(){
     }catch (err){
         alert(err)
     }
+	$('.play_buttons').show();
+	$('#moutzouris_dealCards').hide();
 };
 
 
@@ -143,6 +147,7 @@ function update_info(){
 	
 }
 
+//τρέχει με την Έναρξη του παιχνιδιου - εμφανίζει άδεια deck και κουμπιά
 function show_empty_decks(){
 	$('#deck_div').show();
 	$('#moutzouris_start').hide();

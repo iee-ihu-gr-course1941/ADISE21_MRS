@@ -25,11 +25,28 @@
 		<div class="row">
 		
 		<div id=empty_board class="col-6 col-lg-6 background">
-			<!-- <p>inside chess board div</p> -->
-			<div id='p1' class="p-style">Player 1</div>
+			<p class=player>Player 1</p>
+			<br/>
+			<div class=play_buttons>
+				<button id='delete1' class='btn btn-primary'>Αφαίρεση διπλών</button>
+				<button id='pick1' class='btn btn-primary'>Πάρε κάρτα</button>
+			</div>
+			<br/>
+			<div id='p1' class="p-style"> 
+			</div>
+			
 		</div>
 		<div id=empty_board class="col-6 col-lg-6 background2">
-			<div id='p2' class="p-style">Player 2</div>
+			<p class=player>Player 2</p>
+			<br/>
+			<div class=play_buttons>
+				<button id='delete2' class='btn btn-primary'>Αφαίρεση διπλών</button>
+				<button id='pick2' class='btn btn-primary'>Πάρε κάρτα</button>
+			</div>
+			<br/>
+			<div id='p2' class="p-style">
+			</div>
+			
 		</div>
 		</div>
 	</div>
@@ -47,7 +64,7 @@
 	</div> -->
 
     <div id='game_initializer'>
-		<p>---inside game initializer</p>
+		<!-- <p>---inside game initializer</p> -->
     	<p>Δώσε όνομα χρήστη και διάλεξε παίκτη</p>
     	<input id='p_username'> 
 		<select id='p_id'>
@@ -58,28 +75,25 @@
 		<br/>
 		<button id='moutzouris_login' class='btn btn-primary'>ΕΙΣΟΔΟΣ ΣΤΟ ΠΑΙΧΝΙΔΙ</button><br>
 
-		<p>--//inside game initializer</p>
+		<!-- <p>--//inside game initializer</p> -->
 	</div>
 
 	<div id='game_info'>
-		<p> ---inside game info</p>
+		<!-- <p> ---inside game info</p> -->
 	</div>
 	
 	<div id='play_div'>
-		<p>
-			---div κίνησης
-		</p>
-
+		<!-- <p>	---div κίνησης</p> -->
 	</div>
+
 	<div id='game_info'>
 	</div>
 	
 	<br/><br/><br/><br/>
 	<div>
-		<p>---buttons div</p>
+		<!-- <p>---buttons div</p> -->
 		<button id='moutzouris_start' class='btn btn-primary' >ΕΝΑΡΞΗ</button>
 
-		<p>---buttons div</p>
 		<button id='moutzouris_dealCards' class='btn btn-primary' >Μοίρασε χαρτιά</button>
 		
 	<br/> <br/>
