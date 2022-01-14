@@ -158,7 +158,7 @@ async function get_a_card() {
 }
 async function get_a_card2() {
 	//await fetch('http://localhost/ADISE21_MRS/moutzouris.php/get2');
-	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/pick2');	
+	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/pick2');
 		resetCards();
 		window.location;
 		$("#delete2").removeClass("disabled");
@@ -221,13 +221,13 @@ function game_status_update() {
  function update_status(data) {
 	last_update=new Date().getTime();
 	var game_stat_old = game_status;
-	// var status="initialized"
+	// var status="started"
 	
 	game_status=data[0];
 	console.log("status " +game_status.status);
 	//Λειτουργή
 	//  if(game_status.status = status){
-	// 	$('#moutzouris_dealCards').addClass("disabled");
+	// 	$('#moutzouris_dealCards').removeClass("disabled");
 	//  }
 	update_info();
 	clearTimeout(timer);
