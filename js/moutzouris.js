@@ -75,7 +75,7 @@ const dealCards = async function(){
 		var images = '';
 		Winner(json);
 		//alert(json.length/7);
-		for( var i = 0; i < 20; ++i ) {
+		for( var i = 0; i < json.length; ++i ) {
 			images += '<img src="' + json[i]['c_url'] +'" />';
 		}	
 		document.getElementById('p1').innerHTML = images; 
@@ -83,7 +83,7 @@ const dealCards = async function(){
 		var json = await res2.json();
 		var images = '';
 		//alert(json.length/7);
-		for( var i = 0; i < 21; ++i ) {
+		for( var i = 0; i < json.length; ++i ) {
 			images += '<img src="' + json[i]['c_url'] +'" />';
 		}
 		Winner2(json);
@@ -261,3 +261,44 @@ function show_empty_decks(){
 	$('#moutzouris_dealCards').show();
 	
 }
+
+
+//-----Read me----------
+
+
+/* function dealCards() { //fill_board
+	//dealing cards to db
+	$.ajax({url: "moutzouris.php/dealCards", 
+			method: 'GET',});
+
+	$.ajax({url: "moutzouris.php/deck1/", 
+	success: fill_deck1 });
+
+	$.ajax({url: "moutzouris.php/deck2/", 
+	success: fill_deck2 });
+}
+
+function fill_deck2(data) { //fill_board_by_data
+	//var deck1= JSON.parse(data);
+	var deck2= data;
+	var images = '';
+	//alert("inside fill deck 2");
+	for( var i = 0; i < deck2.length; ++i ) {
+		images += '<img src="' + deck2[i]['c_url'] +'" />';
+	}	
+	document.getElementById('p2').innerHTML = images; 
+}
+
+function fill_deck1(data) { //fill_board_by_data
+	//var deck1= JSON.parse(data);
+	var deck1= data;
+	var images = '';
+	//alert("inside fill deck 1");
+	for( var i = 0; i < deck1.length; ++i ) {
+		images += '<img src="' + deck1[i]['c_url'] +'" />';
+	}	
+	document.getElementById('p1').innerHTML = images; 
+
+	$('.play_buttons').show();
+	$('#moutzouris_dealCards').hide();
+} */
