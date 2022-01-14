@@ -8,67 +8,22 @@ var timer=null;
 $(function () {
 	//draw_empty_board();
 	//fill_board();
-	$('#deck_div').hide();
-	$('#moutzouris_start').hide();
-	$('#moutzouris_dealCards').hide();
-	$('.play_buttons').hide();
-
-
+	
 	$('#moutzouris_login').click( login_to_game);
 	$('#moutzouris_reset').click( reset_board);
-	$('#moutzouris_dealCards').click(dealCards);
-	$('#moutzouris_start').click(show_empty_decks);
-	//$('#moutzouris_start').click(showDecks);
-	
 	//$('#do_move').click( do_move);
 	//$('#move_div').hide();
-	
+	$('#moutzouris_start').hide();
 	game_status_update();
 	//$('#the_move_src').change( update_moves_selector);
 	//$('#do_move2').click( do_move2);
 });
-
-//εμφανίζει-μοιράζει τις κάρτες στους παίκτες
-const dealCards = async function(){
-	
-    try {
-         await fetch('http://localhost/ADISE21_MRS/moutzouris.php/dealCards'); 
-         const res1=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck1');
-         const res2=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck2');   
-
-		var json = await res1.json();
-		var images = '';
-		//alert(json.length/7);
-		for( var i = 0; i < 20; ++i ) {
-			images += '<img src="' + json[i]['c_url'] +'" />';
-		}	
-		document.getElementById('p1').innerHTML = images; 
-
-		var json = await res2.json();
-		var images = '';
-		//alert(json.length/7);
-		for( var i = 0; i < 21; ++i ) {
-			images += '<img src="' + json[i]['c_url'] +'" />';
-		}
-		
-		document.getElementById('p2').innerHTML = images; 
-		
-		if(!res1.ok) throw new Error(`${data1.message}`);
-         if(!res2.ok) throw new Error(`${data2.message}`);  
-    }catch (err){
-        alert(err)
-    }
-	$('.play_buttons').show();
-	$('#moutzouris_dealCards').hide();
-};
-
 
 
 
 function reset_board() {
 	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST' /* ,  success: fill_board_by_data */ });
 	//$('#move_div').hide();
-	$('#deck_div').hide();
 	$('#game_initializer').show(2000);
 }
 
@@ -144,14 +99,6 @@ function update_info(){
 	$('#game_info').html("I am Player: "+me.p_id+", my name is "+me.p_username 
 	+'<br>Token='+me.token+'<br>Game state: '+game_status.status+', '+ game_status.p_turn+' must play now.');
 	
-	
-}
-
-//τρέχει με την Έναρξη του παιχνιδιου - εμφανίζει άδεια deck και κουμπιά
-function show_empty_decks(){
-	$('#deck_div').show();
-	$('#moutzouris_start').hide();
-	$('#moutzouris_dealCards').show();
 	
 }
 

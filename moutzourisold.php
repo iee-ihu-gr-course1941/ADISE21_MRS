@@ -6,7 +6,6 @@ require_once "./lib/users.php";
 
 
 $method = $_SERVER['REQUEST_METHOD'];
-
 $request = explode('/', trim($_SERVER['PATH_INFO'], '/'));
 $input = json_decode(file_get_contents('php://input'), true);
 
@@ -27,39 +26,41 @@ if (isset($_SERVER['HTTP_X_TOKEN'])) {
 // print_r($request);
 
 
-
-switch ($r=array_shift($request)) {
-    //gettings all cards shuffled from cards_from_moutzouris
-    case 'board' : 
-        switch ($b=array_shift($request)) {
+switch ($r = array_shift($request)) {       
+    case 'board':  //gettings all cards shuffled from cards_from_moutzouris
+        switch ($b = array_shift($request)) {
             case '':
-            case null: handle_board($method,/* $input */);
-                        break;
-            /* case 'card': handle_card($method, $request[0],$request[1],$input);
-                        break; */
-	        default: header("HTTP/1.1 404 Not Found");
-                            break;
-			}
-            break;
-    case 'status': 
+            case null:
+                handle_board($method,/* $input */);
+                break;
+                /*case 'piece': handle_piece($method, $request[0],$request[1],$input);
+                        break;*/
+            default:
+                header("HTTP/1.1 404 Not Found");
+                break;
+        }
+        break;
+    case 'status': //returns game status - only GET
         if(sizeof($request)==0) {handle_status($method);}
         else {header("HTTP/1.1 404 Not Found");}
         break;
-	case 'players': handle_player($method, $request,$input);
-			break;
-    case 'reset': reset_board();
-        break;     
-    case 'deleteDecks': deleteDecks(); //removes data from deck1, deck2 and cards_for_moutzouris
-        break;          
-    case 'dealCards': dealCardsToPlayers(); //deals cards to deck1 and deck2
-        break; 
-    case 'deck1': read_deck1(); //reads cards from deck1
-        break; 
-    case 'deck2': read_deck2(); //reads cards from deck2
+    case 'players':
+        handle_player($method, $request, $input); //Gets users OR Gets one user (p1/p2) OR Sets user with PUT
         break;
-    case 'card': handle_card($method, $request[0],$request[1],$input);
+    case 'reset':
+        reset_board();
         break;
-    case 'cardid': show_card($request[0]); //shows cards with id ?
+    case 'deleteDecks':  
+        deleteDecks(); //removes data from deck1, deck2 and cards_for_moutzouris
+        break;
+    case 'dealCards':
+        dealCardsToPlayers(); //deals cards to deck1 and deck2
+        break;
+    case 'deck1':
+        read_deck1(); //reads cards from deck1
+        break;
+    case 'deck2':
+        read_deck2(); //reads cards from deck2
         break;
     case 'delete1':
         delete_double_deck1(); //deletes double cards (cards with same value and name) from deck1
@@ -77,6 +78,10 @@ switch ($r=array_shift($request)) {
         header("HTTP/1.1 404 Not Found");
         exit;
 }
+
+
+
+
 
 
 function handle_board($method/*,$input*/)
@@ -120,12 +125,8 @@ function handle_player($method, $p, $input)
 function handle_status($method)
 {
     if ($method == 'GET') {
-
         show_status();
     } else {
         header('HTTP/1.1 405 Method Not Allowed');
     }
 }
-
-?>
-

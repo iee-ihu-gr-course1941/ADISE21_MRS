@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<title>Μουτζούρης</title>
+	
+	<link href="bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="css/moutzouris.css" rel="stylesheet">
+	<script src="bootstrap/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
+	<script src="js/moutzouris.js"></script>
+    <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<link href="jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet">
+	<!-- <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script> -->
+	<!-- <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script> -->
+	<!-- <script src="http://code.jquery.com/jquery-1.8.3.js"></script> -->
+	<script src="js/moutzouris.js"></script>
+    
+</head>
+<body>
+    <div>
+    	<h1>Μουτζούρης</h1>
+    </div>
+	<div id='chess_board'>
+	</div>
+	<br/>
+    <div id='game_initializer'>
+    	<p>Δώσε όνομα χρήστη και διάλεξε παίκτη</p>
+    	<input id='p_username'> 
+		<select id='p_id'>
+		<option value='p1'>p1</option>
+		<option value='p2'>p2</option>
+		</select>
+		<br/>
+		<br/>
+		<button id='moutzouris_login' class='btn btn-primary'>ΕΙΣΟΔΟΣ ΣΤΟ ΠΑΙΧΝΙΔΙ</button><br>
+	</div>
+	<div id='game_info'>
+	</div>
+	<!-- <div id='move_div'>
+		Δώσε κίνηση (x1 y1 x2 y2): <input id='the_move'>  <button id='do_move' class='btn btn-primary'>ΚΑΝΕ ΤΗΝ ΚΙΝΗΣΗ</button><br>
+		<br><br>
+		Δώσε κίνηση (x1 y1): <input id='the_move_src'> (x2 y2):
+		<select id='the_move_dest'></select>
+		<button id='do_move2' class='btn btn-primary'>ΚΑΝΕ ΤΗΝ ΚΙΝΗΣΗ 2</button><br>
+		</div>
+	<br/><br/><br/> --><br/>
+	<div>
+	<button id='moutzouris_start' class='btn btn-primary' onclick="location.href = './lib/js/main.html';">ΕΝΑΡΞΗ</button>
+
+	<br/> <br/>
+	<button id='moutzouris_reset' class='btn btn-primary'>RESET</button> </div>
+</body>
+</html>

@@ -1,37 +1,69 @@
 <!DOCTYPE html>
- <html class="no-js">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="main.css">
-    
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<title>Μουτζούρης</title>
 	
-    
-    </head>
-    <body>
+	<link href="bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="./main.css" rel="stylesheet">
+	<script src="bootstrap/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
+	<script src="./moutzouris.js"></script>
+    <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<link href="jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet">
+</head>
+<body>
 
-        <div class="game">
-            <h3>Moutzouris</h3>
-    
-            <div class="game-body">
-                <div class="game-options">
-                    <input type="button" id="btnStart" class="btn" value="start" onclick="start()">
-                    <input type="button" id="btnRestart" class="btn hide" value="Restart" onclick="restart()">
-                    <input type="button" class="btn" value="hit me a card" onclick="hitMe()">
-                    <input type="button" class="btn" value="remove duplicate cards" onclick="remove()">
-                </div>
-            
-                        <div class="status" id="status"></div>                       
-            
-                        <div id="players" class="players"></div>
-                        
-            
-                        <div class="clear"></div>
-            </div>
-        </div>
-        <script src="moutzouris.js" async defer></script>
-    </body>
+	
+	<div id='deck_div' class='container'>
+		<div >
+			<h1>Μουτζούρης</h1>
+		</div>
+		<div class="row">
+			<div class="col-6 col-lg-6 background">
+				<p id='p1' class="p-style">Player 1 </p>
+			</div>
+			<div class="col-6 col-lg-6 background2">
+				<p id='p2' class="p-style">Player 2 </p>
+			</div>
+		</div>
+	</div>
+	<br/>
+
+    <div id='game_initializer'>
+		
+    	<p>Δώσε όνομα χρήστη και διάλεξε παίκτη</p>
+    	<input id='p_username'> 
+		<select id='p_id'>
+		<option value='p1'>p1</option>
+		<option value='p2'>p2</option>
+		</select>
+		<br/>
+		<br/>
+		<button id='moutzouris_login' class='btn btn-primary'>ΕΙΣΟΔΟΣ ΣΤΟ ΠΑΙΧΝΙΔΙ</button><br>
+		
+	</div>
+
+	<div id='game_info'>
+		
+	</div>
+	
+	<div id='play_div'>
+		
+		</div>
+	<br/><br/><br/><br/>
+	<div>
+		
+		<button id='moutzouris_start' class='btn btn-primary' >ΕΝΑΡΞΗ</button>
+		
+	<br/> <br/>
+	<button id='moutzouris_reset' class='btn btn-primary'>RESET</button> </div>
+	<script>
+		
+		</script>
+
+</body>
 </html>
