@@ -196,7 +196,15 @@ function game_status_update() {
  function update_status(data) {
 	last_update=new Date().getTime();
 	var game_stat_old = game_status;
+	var status="initialized"
+	for(var i=0; i<data.length; i++){
+		console.log("status " +data[i].status)
+	}
 	game_status=data[0];
+	console.log("status " +game_status.status);
+	 if(game_status.status = status){
+		$('#moutzouris_dealCards').addClass("disabled");
+	 }
 	update_info();
 	clearTimeout(timer);
 	/* if(game_status.p_turn==me.p_id &&  me.p_id!=null) {
