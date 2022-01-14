@@ -76,10 +76,6 @@ switch ($r=array_shift($request)) {
         exit;
 }
 
-/* function show1(){
-    
-} */
-
 
 
 
