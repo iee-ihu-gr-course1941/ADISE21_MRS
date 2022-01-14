@@ -67,7 +67,7 @@ const resetCards = async function(){
 const dealCards = async function(){
 	
     try {
-        // await fetch('http://localhost/ADISE21_MRS/moutzouris.php/dealCards'); 
+         await fetch('http://localhost/ADISE21_MRS/moutzouris.php/dealCards'); 
          const res1=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck1');
          const res2=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck2');   
 
