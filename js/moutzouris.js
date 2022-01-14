@@ -67,7 +67,7 @@ const resetCards = async function(){
 const dealCards = async function(){
 	
     try {
-         await fetch('http://localhost/ADISE21_MRS/moutzouris.php/dealCards'); 
+        // await fetch('http://localhost/ADISE21_MRS/moutzouris.php/dealCards'); 
          const res1=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck1');
          const res2=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck2');   
 
@@ -86,7 +86,7 @@ const dealCards = async function(){
 		for( var i = 0; i < 21; ++i ) {
 			images += '<img src="' + json[i]['c_url'] +'" />';
 		}
-		Winner(json);
+		Winner2(json);
 		document.getElementById('p2').innerHTML = images; 
 		
 		if(!res1.ok) throw new Error(`${data1.message}`);
@@ -120,9 +120,20 @@ async function delete1() {
 		$("#delete1").addClass("hide");
 		$("#delete2").addClass("hide");
 
-		$("#status").val("Player 1 win")
+		$("#status").text("Player 1 win")
+	} 	
+}
+function Winner2(json) {
+	if (json.length==0) {
+			
+		$("#moutzouris_restart").removeClass("hide");
+		$("#pick1").addClass("hide");
+		$("#pick2").addClass("hide");
+		$("#delete1").addClass("hide");
+		$("#delete2").addClass("hide");
+
+		$("#status").text("Player 2 win")
 	} 
-	
 }
 async function delete2() {
 	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/delete2');

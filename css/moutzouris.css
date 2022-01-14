@@ -13,7 +13,11 @@ h1 {
     font-weight: bold;
     margin:auto;
     }
-
+.font{
+    color: black;
+    font-weight: bold;
+    font-size: large;
+}
 .player {
     text-align: center;
     font-size: 20px;
