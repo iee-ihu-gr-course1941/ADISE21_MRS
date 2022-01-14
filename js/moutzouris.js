@@ -104,8 +104,11 @@ async function delete1() {
 		window.location;
 		$("#delete1").addClass("hide");
 		$("#delete2").removeClass("hide");
+		$("#delete2").addClass("disabled");
 		$("#pick1").addClass("hide");
-		$("#pick2").removeClass("hide");
+		$("#pick2").removeClass("hide disabled");
+		
+
 }
 async function delete2() {
 	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/delete2');
@@ -114,8 +117,9 @@ async function delete2() {
 	window.location;
 	$("#delete2").addClass("hide");
 	$("#delete1").removeClass("hide");
+	$("#delete1").addClass("disabled");
 	$("#pick2").addClass("hide");
-	$("#pick1").removeClass("hide");
+	$("#pick1").removeClass("hide disabled");
 	 
 	
 }
@@ -125,7 +129,7 @@ async function get_a_card() {
 		resetCards();
 		window.location;
 		$("#delete1").removeClass("disabled");
-		
+		$("#pick1").addClass("disabled")
 }
 async function get_a_card2() {
 	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/get2');
@@ -133,7 +137,7 @@ async function get_a_card2() {
 		resetCards();
 		window.location;
 		$("#delete2").removeClass("disabled");
-		
+		$("#pick2").addClass("disabled")
 }
 
 function reset_board() {
