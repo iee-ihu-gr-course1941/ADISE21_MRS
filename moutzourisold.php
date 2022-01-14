@@ -59,11 +59,6 @@ switch ($r=array_shift($request)) {
         break;
     case 'cardid': show_card($request[0]); //shows cards with id ?
         break;
-<<<<<<< Updated upstream
-	default:  header("HTTP/1.1 404 Not Found");
-                        exit;
-    }
-=======
     case 'delete1':
         delete_double_deck1(); //deletes double cards (cards with same value and name) from deck1
         break;
@@ -81,11 +76,7 @@ switch ($r=array_shift($request)) {
         exit;
 }
 
-/* function show1(){
-    
-} */
 
->>>>>>> Stashed changes
 
 
 
