@@ -59,9 +59,33 @@ switch ($r=array_shift($request)) {
         break;
     case 'cardid': show_card($request[0]); //shows cards with id ?
         break;
+<<<<<<< Updated upstream
 	default:  header("HTTP/1.1 404 Not Found");
                         exit;
     }
+=======
+    case 'delete1':
+        delete_double_deck1(); //deletes double cards (cards with same value and name) from deck1
+        break;
+    case 'delete2':
+        delete_double_deck2(); //deletes double cards (cards with same value and name) from deck2
+        break;
+    case 'pick1':
+        pick_card1(); //inserts a random card from deck2 to deck1 and then deletes that card from deck2
+        break;
+    case 'pick2':
+        pick_card2(); //inserts a random card from deck1 to deck2 and then deletes that card from deck1
+        break;
+    default:
+        header("HTTP/1.1 404 Not Found");
+        exit;
+}
+
+/* function show1(){
+    
+} */
+
+>>>>>>> Stashed changes
 
 
 
