@@ -12,6 +12,7 @@ $(function () {
 	$('#moutzouris_start').hide();
 	$('#moutzouris_dealCards').hide();
 	$('.play_buttons').hide();
+	
 
 
 	$('#moutzouris_login').click( login_to_game);
@@ -19,7 +20,10 @@ $(function () {
 	$('#moutzouris_dealCards').click(dealCards);
 	$('#moutzouris_start').click(show_empty_decks);
 	//$('#moutzouris_start').click(showDecks);
-	
+	$('#delete1').click(delete1);
+	$('#delete2').click(delete2);
+	$('#pick1').click(get_a_card);
+	$('#pick2').click(get_a_card2);
 	//$('#do_move').click( do_move);
 	//$('#move_div').hide();
 	
@@ -28,7 +32,38 @@ $(function () {
 	//$('#do_move2').click( do_move2);
 });
 
+// $('delete1').click(delete_duplicate_cards1);
 //εμφανίζει-μοιράζει τις κάρτες στους παίκτες
+const deleteCards = async function(){
+
+         const res1=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck1');
+         const res2=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck2');   
+
+		var json = await res1.json();
+		console.log(json.length)
+		var images = '';
+		//alert(json.length/7);
+		for( var i = 0; i < json.length; ++i ) {
+			// console.log(JSON.stringify(json[i]));
+			images += '<img src="' + json[i]['c_url'] +'" />';
+		}	
+
+		document.getElementById('p1').innerHTML = images; 
+
+		var json = await res2.json();
+		console.log(json.length);
+		var images = '';
+		//alert(json.length/7);
+		for( var i = 0; i < json.length; ++i ) {
+			images += '<img src="' + json[i]['c_url'] +'" />';
+		}
+		
+		document.getElementById('p2').innerHTML = images; 
+		
+		if(!res1.ok) throw new Error(`${data1.message}`);
+         if(!res2.ok) throw new Error(`${data2.message}`);  
+    
+};
 const dealCards = async function(){
 	
     try {
@@ -62,8 +97,44 @@ const dealCards = async function(){
 	$('#moutzouris_dealCards').hide();
 };
 
-
-
+async function delete1() {
+		await fetch('http://localhost/ADISE21_MRS/moutzouris.php/delete1');
+		
+		deleteCards();
+		window.location;
+		$("#delete1").addClass("hide");
+		$("#delete2").removeClass("hide");
+		$("#pick1").addClass("hide");
+	$("#pick2").removeClass("hide");
+}
+async function delete2() {
+	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/delete2');
+	
+	deleteCards();
+	window.location;
+	$("#delete2").addClass("hide");
+	$("#delete1").removeClass("hide");
+	$("#pick2").addClass("hide");
+	$("#pick1").removeClass("hide");
+	 
+	
+}
+async function get_a_card() {
+	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/get1');
+		
+		deleteCards();
+		window.location;
+		$("#delete1").removeClass("disabled");
+		
+}
+async function get_a_card2() {
+	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/get2');
+		
+		deleteCards();
+		window.location;
+		$("#delete2").removeClass("disabled");
+		
+}
 
 function reset_board() {
 	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST' /* ,  success: fill_board_by_data */ });
@@ -154,163 +225,3 @@ function show_empty_decks(){
 	$('#moutzouris_dealCards').show();
 	
 }
-
-/* function draw_empty_board(p) {
-	
-	if(p!='p2') {p='p1';}
-	var draw_init = {
-		'p1': {i1:8,i2:0,istep:-1,j1:1,j2:9,jstep:1},
-		'p2': {i1:1,i2:9,istep:1, j1:8,j2:0,jstep:-1}
-	};
-	var s=draw_init[p];
-	var t='<table id="moutzouris_table">';
-	for(var i=s.i1;i!=s.i2;i+=s.istep) {
-		t += '<tr>';
-		for(var j=s.j1;j!=s.j2;j+=s.jstep) {
-			t += '<td class="moutzouris_square" id="square_'+j+'_'+i+'">' + j +','+i+'</td>'; 
-		}
-		t+='</tr>';
-	}
-	t+='</table>';
-	
-	$('#moutzouris_board').html(t);
-	$('.moutzouris_square').click(click_on_piece);
-}
-
-function fill_board() {
-	$.ajax({url: "moutzouris.php/board/", 
-		headers: {"X-Token": me.token},
-		success: fill_board_by_data });
-} */
-
-
-/*function fill_board_by_data(data) {
-	board=data;
-	for(var i=0;i<data.length;i++) {
-		var o = data[i];
-		var id = '#square_'+ o.x +'_' + o.y;
-		var c = (o.piece!=null)?o.piece_color + o.piece:'';
-		var pc= (o.piece!=null)?'piece'+o.piece_color:'';
-		var im = (o.piece!=null)?'<img class="piece '+pc+'" src="images/'+c+'.png">':'';
-		$(id).addClass(o.b_color+'_square').html(im);
-	}
- 
-	$('.ui-droppable').droppable( "disable" );
-		
-	if(me && me.piece_color!=null) {
-		$('.piece'+me.piece_color).draggable({start: start_dragging, stop: end_dragging, revert:true});
-	}
-	if(me.piece_color!=null && game_status.p_turn==me.piece_color) {
-		$('#move_div').show(1000);
-	} else {
-		$('#move_div').hide(1000);
-	}
-}*/
-/*function do_move() {
-	var s = $('#the_move').val();
-	
-	var a = s.trim().split(/[ ]+/);
-	if(a.length!=4) {
-		alert('Must give 4 numbers');
-		return;
-	}
-	$.ajax({url: "lib/moutzouris.php/board/piece/"+a[0]+'/'+a[1], 
-			method: 'PUT',
-			dataType: "json",
-			contentType: 'application/json',
-			data: JSON.stringify( {x: a[2], y: a[3]}),
-			headers: {"X-Token": me.token},
-			success: move_result,
-			error: login_error});
-	
-}*/
-/*
-function move_result(data){
-	game_status_update();
-	fill_board_by_data(data);
-}
-
-function update_moves_selector() {
-	$('.moutzouris_square').removeClass('pmove').removeClass('tomove');
-	var s = $('#the_move_src').val();
-	var a = s.trim().split(/[ ]+/);
-	$('#the_move_dest').html('');
-	if(a.length!=2) {
-		return;
-	}
-	var id = '#square_'+ a[0]+'_'+a[1];
-	$(id).addClass('tomove');
-	for(i=0;i<board.length;i++) {
-		if(board[i].x==a[0] && board[i].y==a[1] && board[i].moves && Array.isArray(board[i].moves)) {
-			for(m=0;m<board[i].moves.length;m++) {
-				$('#the_move_dest').append('<option value="'+board[i].moves[m].x+' '+board[i].moves[m].y+'">'+board[i].moves[m].x+' '+board[i].moves[m].y+'</option>');
-				var id = '#square_'+ board[i].moves[m].x +'_' + board[i].moves[m].y;
-				$(id).addClass('pmove');
-			}
-		}
-	}
-}
-
-function do_move2() {
-	$('#the_move').val($('#the_move_src').val() +' ' + $('#the_move_dest').val());
-	$('.moutzouris_square').removeClass('pmove').removeClass('tomove');
-	do_move();
-}
-
-function click_on_piece(e) {
-	var o=e.target;
-	if(o.tagName!='TD') {o=o.parentNode;}
-	if(o.tagName!='TD') {return;}
-	
-	var id=o.id;
-	var a=id.split(/_/);
-	$('#the_move_src').val(a[1]+' ' +a[2]);
-	update_moves_selector();
-}
-
-function start_dragging ( event, ui ) {
-	var x;
-	
-	var o=event.target.parentNode;
-	var id = o.id;
-	var a = id.trim().split(/_/);
-	
-	$(o).addClass('tomove');
-	for(i=0;i<board.length;i++) {
-		if(board[i].x==a[1] && board[i].y==a[2] && board[i].moves && Array.isArray(board[i].moves)) {
-			for(m=0;m<board[i].moves.length;m++) {
-				$('#the_move_dest').append('<option value="'+board[i].moves[m].x+' '+board[i].moves[m].y+'">'+board[i].moves[m].x+' '+board[i].moves[m].y+'</option>');
-				var id = '#square_'+ board[i].moves[m].x +'_' + board[i].moves[m].y;
-				$(id).addClass('pmove').droppable({drop: dropping}).droppable('enable');
-			}
-		}
-	}
-}
-
-function dropping( event, ui ) {
-        var x;
-
-	ui.draggable[0].validMove=1;
-	var id = this.id;
-	var a2 = id.split(/_/);
-	var a1 = ui.draggable[0].parentNode.id.split(/_/);
-
-	$('#the_move').val(a1[1]+' '+a1[2]+' '+a2[1]+' '+a2[2]);
-	$('.moutzouris_square').removeClass('pmove').removeClass('tomove');
-	do_move();
-}
-
-
-function end_dragging ( event, ui ) {
-        var x;
-
-	if(this.validMove) {
-		this.validMove=0;
-		return;
-	}
-	$('.moutzouris_square').removeClass('pmove').removeClass('tomove');
-	this.top=0;
-	this.left=0;
-
-}
-*/

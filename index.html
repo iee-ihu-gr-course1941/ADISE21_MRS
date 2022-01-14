@@ -28,7 +28,7 @@
 			<p class=player>Player 1</p>
 			<br/>
 			<div class=play_buttons>
-				<button id='delete1' class='btn btn-primary'>Αφαίρεση διπλών</button>
+				<button id='delete1' class='btn btn-primary disabled'>Αφαίρεση διπλών</button>
 				<button id='pick1' class='btn btn-primary'>Πάρε κάρτα</button>
 			</div>
 			<br/>
@@ -40,8 +40,8 @@
 			<p class=player>Player 2</p>
 			<br/>
 			<div class=play_buttons>
-				<button id='delete2' class='btn btn-primary'>Αφαίρεση διπλών</button>
-				<button id='pick2' class='btn btn-primary'>Πάρε κάρτα</button>
+				<button id='delete2' class='btn btn-primary hide disabled'>Αφαίρεση διπλών</button>
+				<button id='pick2' class='btn btn-primary hide'>Πάρε κάρτα</button>
 			</div>
 			<br/>
 			<div id='p2' class="p-style">
@@ -98,37 +98,7 @@
 		
 	<br/> <br/>
 	<button id='moutzouris_reset' class='btn btn-primary'>RESET</button> </div>
-	<script>
-		
-	/* const showRecipe = async function(){
-    try {
-         await fetch('http://localhost/ADISE21_MRS/moutzouris.php/dealCards'); 
-         const res2=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck1');
-         const res3=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck2');   
-         const data1 = await res2.json();
-         const data2 =await res3.json();
-         
-
-		//var jsonString = $.getJSON('http://localhost/ADISE21_MRS/moutzouris.php/deck1', function(data) {});
-		//var json = JSON.parse(data1);
-		var json = data1;
-		var images = '';
-		//alert(json.length/7);
-		for( var i = 0; i < 20; ++i ) {
-			images += '<img src="' + json[i]['c_url'] +'" />';
-		}
-		
-		document.getElementById('p1').innerHTML = images; 
-
-		
-		if(!res2.ok) throw new Error(`${data2.message}`);
-         if(!res3.ok) throw new Error(`${data1.message}`);  
-    }catch (err){
-        alert(err)
-    }
-};
-showRecipe(); */
-		</script>
+	
 
 </body>
 </html>

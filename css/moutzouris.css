@@ -21,7 +21,10 @@ h1 {
     font-weight: bold;
     margin:auto;
 }    
-
+.center{
+    text-align: center;
+    margin: auto;
+}
 .container {
     width: 100%;
     margin:0px !important;
@@ -38,7 +41,9 @@ h1 {
     margin-right: 0px !important;
     margin-left: 0px !important;
 }
-
+.hide{
+  display: none;  
+}
 .background {
     width: 90%;
     height: 105vh;
@@ -47,7 +52,9 @@ h1 {
     color: rgb(67, 67, 67);
     text-align: center;
  }
-
+ .disabled{
+    pointer-events: none;
+  }
  .background2 {
     width: 90%;
     height: 105vh;
