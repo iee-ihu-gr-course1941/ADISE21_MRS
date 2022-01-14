@@ -1,0 +1,31 @@
+curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/board
+
+curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/reset
+
+curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/players
+
+curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/players/p1
+
+curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/players/p2
+
+curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/status
+
+curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/deleteDecks
+
+curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/deck1
+
+curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/deck2
+
+curl -X GET http://localhost/ADISE21_MRS/moutzouris.php/dealCards
+
+
+
+curl -X GET https://users.it.teithe.gr/~it164852/ADISE21_MRS/moutzouris.php/players
+
+
+
+
+curl -X PUT http://localhost/ADISE21_MRS/moutzouris.php/players/p2 -d "{\"p_username\":\"test2\", \"p_id\":\"p2\"}"
+
+curl -X PUT http://localhost/ADISE21_MRS/moutzouris.php/players/p1 -d "{\"p_username\":\"test1\", \"p_id\":\"p1\"}"
+

@@ -5,18 +5,6 @@ var last_update=new Date().getTime();
 var timer=null;
 
 
-/*  function returnD1(){
-	var jsonString = 'http://localhost/ADISE21_MRS/moutzouris.php/deck1';
-	 json = JSON.parse(jsonString)
-	var images = '';
-    for(var i=0, i<json.length; ++i ) {
-    	images += '<img src="' + json[i]['c_url'] +'" />';
-    }
-
-    document.getElementById( 'p1' ).innerHTML = images;
-}  */
-
-
 $(function () {
 	//draw_empty_board();
 	//fill_board();
@@ -24,6 +12,7 @@ $(function () {
 	$('#moutzouris_login').click( login_to_game);
 	$('#moutzouris_reset').click( reset_board);
 	$('#moutzouris_start').click(showDecks);
+
 	//$('#do_move').click( do_move);
 	//$('#move_div').hide();
 	$('#moutzouris_start').hide();
@@ -31,6 +20,7 @@ $(function () {
 	//$('#the_move_src').change( update_moves_selector);
 	//$('#do_move2').click( do_move2);
 });
+
 
 const showDecks = async function(){
 	$('#deck_div').show();
@@ -62,6 +52,7 @@ const showDecks = async function(){
         alert(err)
     }
 };
+
 
 
 
