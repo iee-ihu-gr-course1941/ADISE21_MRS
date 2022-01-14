@@ -20,9 +20,52 @@ $(function () {
 });
 
 
+//εμφανίζει-μοιράζει τις κάρτες στους παίκτες
+const dealCards = async function(){
+	
+    try {
+         await fetch('http://localhost/ADISE21_MRS/moutzouris.php/dealCards'); 
+         const res1=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck1');
+         const res2=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck2');   
+
+		var json = await res1.json();
+		var images = '';
+		//alert(json.length + "  " + json.length/7);
+		for( var i = 0; i < json.length; ++i ) {
+			images += '<img src="' + json[i]['c_url'] +'" />';
+		}	
+		document.getElementById('p1').innerHTML = images; 
+
+		var json = await res2.json();
+		var images = '';
+		//alert(json.length/7);
+		for( var i = 0; i < json.length; ++i ) {
+			images += '<img src="' + json[i]['c_url'] +'" />';
+		}
+		
+		document.getElementById('p2').innerHTML = images; 
+		
+		if(!res1.ok) throw new Error(`${data1.message}`);
+         if(!res2.ok) throw new Error(`${data2.message}`);  
+    }catch (err){
+        alert(err)
+    }
+	$('.play_buttons').show();
+	$('#moutzouris_dealCards').hide();
+	game_status_update();
+	$('#delete1').click(delete_double_deck1);
+};
+
+//$('#delete1').click(delete_double_deck1());
+
+
 
 function reset_board() {
-	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST' /* ,  success: fill_board_by_data */ });
+	$.ajax({
+		url: "moutzouris.php/reset" , 
+		headers: {"X-Token": me.token}, 
+		method: 'POST' /* ,  
+		success: fill_board_by_data */ });
 	//$('#move_div').hide();
 	$('#game_initializer').show(2000);
 }
