@@ -14,7 +14,7 @@ $(function () {
 	$('.play_buttons').hide();
 	
 
-
+	$('#moutzouris_restart').click(reset_board);
 	$('#moutzouris_login').click( login_to_game);
 	$('#moutzouris_reset').click( reset_board);
 	$('#moutzouris_dealCards').click(dealCards);
@@ -73,6 +73,7 @@ const dealCards = async function(){
 
 		var json = await res1.json();
 		var images = '';
+		Winner(json);
 		//alert(json.length/7);
 		for( var i = 0; i < 20; ++i ) {
 			images += '<img src="' + json[i]['c_url'] +'" />';
@@ -85,7 +86,7 @@ const dealCards = async function(){
 		for( var i = 0; i < 21; ++i ) {
 			images += '<img src="' + json[i]['c_url'] +'" />';
 		}
-		
+		Winner(json);
 		document.getElementById('p2').innerHTML = images; 
 		
 		if(!res1.ok) throw new Error(`${data1.message}`);
@@ -109,6 +110,19 @@ async function delete1() {
 		$("#pick2").removeClass("hide disabled");
 		
 
+}
+ function Winner(json) {
+	if (json.length==0) {
+			
+		$("#moutzouris_restart").removeClass("hide");
+		$("#pick1").addClass("hide");
+		$("#pick2").addClass("hide");
+		$("#delete1").addClass("hide");
+		$("#delete2").addClass("hide");
+
+		$("#status").val("Player 1 win")
+	} 
+	
 }
 async function delete2() {
 	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/delete2');
@@ -196,15 +210,14 @@ function game_status_update() {
  function update_status(data) {
 	last_update=new Date().getTime();
 	var game_stat_old = game_status;
-	var status="initialized"
-	for(var i=0; i<data.length; i++){
-		console.log("status " +data[i].status)
-	}
+	// var status="initialized"
+	
 	game_status=data[0];
 	console.log("status " +game_status.status);
-	 if(game_status.status = status){
-		$('#moutzouris_dealCards').addClass("disabled");
-	 }
+	//Λειτουργή
+	//  if(game_status.status = status){
+	// 	$('#moutzouris_dealCards').addClass("disabled");
+	//  }
 	update_info();
 	clearTimeout(timer);
 	/* if(game_status.p_turn==me.p_id &&  me.p_id!=null) {
