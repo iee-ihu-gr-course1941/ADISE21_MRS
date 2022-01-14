@@ -5,25 +5,12 @@ var last_update=new Date().getTime();
 var timer=null;
 
 
-/*  function returnD1(){
-	var jsonString = 'http://localhost/ADISE21_MRS/moutzouris.php/deck1';
-	 json = JSON.parse(jsonString)
-	var images = '';
-    for(var i=0, i<json.length; ++i ) {
-    	images += '<img src="' + json[i]['c_url'] +'" />';
-    }
-
-    document.getElementById( 'p1' ).innerHTML = images;
-}  */
-
-
 $(function () {
 	//draw_empty_board();
 	//fill_board();
-	$('#deck_div').hide();
+	
 	$('#moutzouris_login').click( login_to_game);
 	$('#moutzouris_reset').click( reset_board);
-	$('#moutzouris_start').click(showDecks);
 	//$('#do_move').click( do_move);
 	//$('#move_div').hide();
 	$('#moutzouris_start').hide();
@@ -32,43 +19,11 @@ $(function () {
 	//$('#do_move2').click( do_move2);
 });
 
-const showDecks = async function(){
-	$('#deck_div').show();
-    try {
-         await fetch('http://localhost/ADISE21_MRS/moutzouris.php/dealCards'); 
-         const res1=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck1');
-         const res2=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck2');   
-
-		var json = await res1.json();
-		var images = '';
-		//alert(json.length/7);
-		for( var i = 0; i < 20; ++i ) {
-			images += '<img src="' + json[i]['c_url'] +'" />';
-		}	
-		document.getElementById('p1').innerHTML = images; 
-
-		var json = await res2.json();
-		var images = '';
-		//alert(json.length/7);
-		for( var i = 0; i < 21; ++i ) {
-			images += '<img src="' + json[i]['c_url'] +'" />';
-		}
-		
-		document.getElementById('p2').innerHTML = images; 
-		
-		if(!res1.ok) throw new Error(`${data1.message}`);
-         if(!res2.ok) throw new Error(`${data2.message}`);  
-    }catch (err){
-        alert(err)
-    }
-};
-
 
 
 function reset_board() {
 	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST' /* ,  success: fill_board_by_data */ });
 	//$('#move_div').hide();
-	$('#deck_div').hide();
 	$('#game_initializer').show(2000);
 }
 
