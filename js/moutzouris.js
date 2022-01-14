@@ -9,13 +9,18 @@ $(function () {
 	//draw_empty_board();
 	//fill_board();
 	$('#deck_div').hide();
+	$('#moutzouris_start').hide();
+	$('#moutzouris_dealCards').hide();
+
 	$('#moutzouris_login').click( login_to_game);
 	$('#moutzouris_reset').click( reset_board);
-	$('#moutzouris_start').click(showDecks);
-
+	$('#moutzouris_dealCards').click(showDecks);
+	$('#moutzouris_start').click(show_empty_decks);
+	//$('#moutzouris_start').click(showDecks);
+	
 	//$('#do_move').click( do_move);
 	//$('#move_div').hide();
-	$('#moutzouris_start').hide();
+	
 	game_status_update();
 	//$('#the_move_src').change( update_moves_selector);
 	//$('#do_move2').click( do_move2);
@@ -23,7 +28,7 @@ $(function () {
 
 
 const showDecks = async function(){
-	$('#deck_div').show();
+	
     try {
          await fetch('http://localhost/ADISE21_MRS/moutzouris.php/dealCards'); 
          const res1=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck1');
@@ -135,6 +140,13 @@ function update_info(){
 	$('#game_info').html("I am Player: "+me.p_id+", my name is "+me.p_username 
 	+'<br>Token='+me.token+'<br>Game state: '+game_status.status+', '+ game_status.p_turn+' must play now.');
 	
+	
+}
+
+function show_empty_decks(){
+	$('#deck_div').show();
+	$('#moutzouris_start').hide();
+	$('#moutzouris_dealCards').show();
 	
 }
 
