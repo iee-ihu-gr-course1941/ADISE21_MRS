@@ -34,7 +34,7 @@ $(function () {
 
 // $('delete1').click(delete_duplicate_cards1);
 //εμφανίζει-μοιράζει τις κάρτες στους παίκτες
-const deleteCards = async function(){
+const resetCards = async function(){
 
          const res1=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck1');
          const res2=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck2');   
@@ -100,17 +100,17 @@ const dealCards = async function(){
 async function delete1() {
 		await fetch('http://localhost/ADISE21_MRS/moutzouris.php/delete1');
 		
-		deleteCards();
+		resetCards();
 		window.location;
 		$("#delete1").addClass("hide");
 		$("#delete2").removeClass("hide");
 		$("#pick1").addClass("hide");
-	$("#pick2").removeClass("hide");
+		$("#pick2").removeClass("hide");
 }
 async function delete2() {
 	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/delete2');
 	
-	deleteCards();
+	resetCards();
 	window.location;
 	$("#delete2").addClass("hide");
 	$("#delete1").removeClass("hide");
@@ -122,7 +122,7 @@ async function delete2() {
 async function get_a_card() {
 	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/get1');
 		
-		deleteCards();
+		resetCards();
 		window.location;
 		$("#delete1").removeClass("disabled");
 		
@@ -130,7 +130,7 @@ async function get_a_card() {
 async function get_a_card2() {
 	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/get2');
 		
-		deleteCards();
+		resetCards();
 		window.location;
 		$("#delete2").removeClass("disabled");
 		
