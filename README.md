@@ -34,6 +34,63 @@ https://users.it.teithe.gr/~it164852/ADISE21_MRS/
 	$DB_USER = 'όνομα χρήστη';
     ?>
 ```
+
+## Database
+
+### Cards
+A table that contains a standard 52-card deck.
+| Field | Description |
+| --- | --- |
+|`c_id`|Unique ID for every card|
+|`c_name`| Card's name|
+|`c_value`| Card's value|
+|`c_suit`|Card's suit |
+
+### Cards_for_moutzouris
+A table that contains the 41 cards needed to play old maid.
+| Field | Description |
+| --- | --- |
+|`c_id`|Unique ID for every card|
+|`c_name`| Card's name|
+|`c_value`| Card's value|
+|`c_suit`|Card's suit |
+
+### Cards_for_moutzouris_reset
+A table that helps reset the initial deck of cards for old maid.
+| Field | Description |
+| --- | --- |
+|`c_id`|Unique ID for every card|
+|`c_name`| Card's name|
+|`c_value`| Card's value|
+|`c_suit`|Card's suit |
+
+### Deck1 - Deck2
+Two empty tables in which we split shuffled cards from Cards_for_moutzouris.
+| Field | Description |
+| --- | --- |
+|`c_id`|Unique ID for every card|
+|`c_name`| Card's name|
+|`c_value`| Card's value|
+|`c_suit`|Card's suit |
+
+###Game_status
+A table that contains the status of the game.
+| Field | Description |
+| --- | --- |
+|`status`|Enum values : 'not active','initialized','started','ended','aborded'|
+|`p_turn`| Id of the player that plays |
+|`result`| Id of the player that won|
+|`last_change`|A timestamp of the last change/action in the game |
+
+###Players
+A table that contains player's info.
+| Field | Description |
+| --- | --- |
+|`p_username`|Player's urename|
+|`p_id`| Player's Id |
+|`token`| Player's secret token |
+|`p_last_action`|A timestamp of the last action by the player |
+
 ## Περιγραφή API
 
 ### **Methods**
