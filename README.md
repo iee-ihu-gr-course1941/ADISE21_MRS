@@ -73,7 +73,7 @@ Two empty tables in which we split shuffled cards from Cards_for_moutzouris.
 |`c_value`| Card's value|
 |`c_suit`|Card's suit |
 
-###Game_status
+### Game_status
 A table that contains the status of the game.
 | Field | Description |
 | --- | --- |
