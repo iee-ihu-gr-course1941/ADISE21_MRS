@@ -149,16 +149,16 @@ async function delete2() {
 	
 }
 async function get_a_card() {
-	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/get1');
-		
+	//await fetch('http://localhost/ADISE21_MRS/moutzouris.php/get1');
+	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/pick1');
 		resetCards();
 		window.location;
 		$("#delete1").removeClass("disabled");
 		$("#pick1").addClass("disabled")
 }
 async function get_a_card2() {
-	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/get2');
-		
+	//await fetch('http://localhost/ADISE21_MRS/moutzouris.php/get2');
+	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/pick2');	
 		resetCards();
 		window.location;
 		$("#delete2").removeClass("disabled");
