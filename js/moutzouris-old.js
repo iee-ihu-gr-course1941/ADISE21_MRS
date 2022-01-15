@@ -3,7 +3,7 @@ var game_status={};
 var board={};
 var last_update=new Date().getTime();
 var timer=null;
-var back_url = 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Card_back_01.svg'; //new
+
 
 $(function () {
 	//draw_empty_board();
@@ -39,101 +39,56 @@ const resetCards = async function(){
          const res1=await fetch('moutzouris.php/deck1');
          const res2=await fetch('moutzouris.php/deck2');   
 
-		 if (me.p_id == "p1" && me.p_id != null){ //---this is new shows p1 normal, p2 back
-			var json1 = await res1.json();
-			var images = '';
-			Winner(json1);
-			//alert(json.length/7);
-			for( var i = 0; i < json1.length; ++i ) {
-				images += '<img src="' + json1[i]['c_url'] +'" />';
-			}	
-			document.getElementById('p1').innerHTML = images; 
-		
-			var json2 = await res2.json();
-			var images = '';
-			
-			for( var i = 0; i < json2.length; ++i ) {
-				images += '<img src="' + back_url +'" />'; //--this is new
-			}
-			Winner2(json2);
-			document.getElementById('p2').innerHTML = images; 
+		var json = await res1.json();
+		console.log(json.length)
+		var images = '';
+		//alert(json.length/7);
+		for( var i = 0; i < json.length; ++i ) {
+			// console.log(JSON.stringify(json[i]));
+			images += '<img src="' + json[i]['c_url'] +'" />';
+		}	
 
-		}else if(me.p_id == "p2" && me.p_id != null){ //--this is new - shows p2 normal, p1 back
+		document.getElementById('p1').innerHTML = images; 
 
-			var json1 = await res1.json();
-			var images = '';
-			Winner(json1);
-			//alert(json.length/7);
-			for( var i = 0; i < json1.length; ++i ) {
-				images += '<img src="' + back_url +'" />';
-			}	
-			document.getElementById('p1').innerHTML = images; 
-		
-			var json2 = await res2.json();
-			var images = '';
-			
-			for( var i = 0; i < json2.length; ++i ) {
-				images += '<img src="' + json2[i]['c_url'] +'" />';
-			}
-			Winner2(json2);
-			document.getElementById('p2').innerHTML = images; 
+		var json = await res2.json();
+		console.log(json.length);
+		var images = '';
+		//alert(json.length/7);
+		for( var i = 0; i < json.length; ++i ) {
+			images += '<img src="' + json[i]['c_url'] +'" />';
 		}
+		
+		document.getElementById('p2').innerHTML = images; 
 		
 		if(!res1.ok) throw new Error(`${data1.message}`);
          if(!res2.ok) throw new Error(`${data2.message}`);  
     
 };
-
-
-const dealCards = async function(){ 
+const dealCards = async function(){
 	
     try {
          await fetch('moutzouris.php/dealCards'); 
          const res1=await fetch('moutzouris.php/deck1');
          const res2=await fetch('moutzouris.php/deck2');   
-		
-		if (me.p_id == "p1" && me.p_id != null){ //--this is new 
-			var json1 = await res1.json();
-			var images = '';
-			Winner(json1);
-			//alert(json.length/7);
-			for( var i = 0; i < json1.length; ++i ) {
-				images += '<img src="' + json1[i]['c_url'] +'" />';
-			}	
-			document.getElementById('p1').innerHTML = images; 
-		
-			var json2 = await res2.json();
-			var images = '';
-			
-			for( var i = 0; i < json2.length; ++i ) {
-				images += '<img src="' + back_url +'" />'; //--this is new
-			}
-			Winner2(json2);
-			document.getElementById('p2').innerHTML = images; 
-		}else if(me.p_id == "p2" && me.p_id != null){     //--this is new
 
-			var json1 = await res1.json();
-			var images = '';
-			Winner(json1);
-			//alert(json.length/7);
-			for( var i = 0; i < json1.length; ++i ) {
-				images += '<img src="' + back_url +'" />';
-			}	
-			document.getElementById('p1').innerHTML = images; 
-		
-			var json2 = await res2.json();
-			var images = '';
-			
-			for( var i = 0; i < json2.length; ++i ) {
-				images += '<img src="' + json2[i]['c_url'] +'" />';
-			}
-			Winner2(json2);
-			document.getElementById('p2').innerHTML = images; 
+		var json = await res1.json();
+		var images = '';
+		Winner(json);
+		//alert(json.length/7);
+		for( var i = 0; i < json.length; ++i ) {
+			images += '<img src="' + json[i]['c_url'] +'" />';
+		}	
+		document.getElementById('p1').innerHTML = images; 
+
+		var json = await res2.json();
+		var images = '';
+		//alert(json.length/7);
+		for( var i = 0; i < json.length; ++i ) {
+			images += '<img src="' + json[i]['c_url'] +'" />';
 		}
-
-
-
-
+		Winner2(json);
+		document.getElementById('p2').innerHTML = images; 
+		
 		if(!res1.ok) throw new Error(`${data1.message}`);
          if(!res2.ok) throw new Error(`${data2.message}`);  
     }catch (err){
