@@ -112,7 +112,7 @@ function read_board()
 	$res = $st->get_result();
 	header('Content-type: application/json');
 	print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);
-	//return($res->fetch_all(MYSQLI_ASSOC));
+	return($res->fetch_all(MYSQLI_ASSOC));
 }
 
 function read_deck1()
@@ -124,7 +124,7 @@ function read_deck1()
 	$res = $st->get_result();
 	header('Content-type: application/json');
 	print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);
-	//return($res->fetch_all(MYSQLI_ASSOC));
+	return($res->fetch_all(MYSQLI_ASSOC));
 }
 
 function read_deck2()
@@ -136,7 +136,7 @@ function read_deck2()
 	$res = $st->get_result();
 	header('Content-type: application/json');
 	print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);
-	//return($res->fetch_all(MYSQLI_ASSOC));
+	return($res->fetch_all(MYSQLI_ASSOC));
 }
 
 function delete_double_deck1()
@@ -144,21 +144,17 @@ function delete_double_deck1()
 	global $mysqli;
 	// Create query
 	$query = 'DELETE FROM deck1 WHERE deck1.c_value IN 
-	(SELECT c_value FROM deck1 GROUP BY c_value HAVING COUNT(*) = 2)
-
-    ';
+	(SELECT c_value FROM deck1 GROUP BY c_value HAVING COUNT(*) = 2)';
 	// Prepare statement
 	$stmt = $mysqli->prepare($query);
 	// Execute query
 	$stmt->execute();
 	if ($stmt->execute()) {
 		echo json_encode(
-			array('message' => 'Double Cards From Deck1 Deleted')
-		);
+			array('message' => 'Double Cards From Deck1 Deleted'));
 	} else {
 		echo json_encode(
-			array('message' => 'Double Cards From Deck1 Not Deleted')
-		);
+			array('message' => 'Double Cards From Deck1 Not Deleted'));
 	}
 }
 
@@ -167,9 +163,7 @@ function delete_double_deck2()
 	global $mysqli;
 	// Create query
 	$query = 'DELETE FROM deck2 WHERE deck2.c_value IN 
-	(SELECT c_value FROM deck2 GROUP BY c_value HAVING COUNT(*) = 2)
-
-    ';
+	(SELECT c_value FROM deck2 GROUP BY c_value HAVING COUNT(*) = 2)';
 
 	// Prepare statement
 	$stmt = $mysqli->prepare($query);
@@ -177,12 +171,10 @@ function delete_double_deck2()
 	$stmt->execute();
 	if ($stmt->execute()) {
 		echo json_encode(
-			array('message' => 'Double Cards From Deck2 Deleted')
-		);
+			array('message' => 'Double Cards From Deck2 Deleted'));
 	} else {
 		echo json_encode(
-			array('message' => 'Double Cards From Deck2 Not Deleted')
-		);
+			array('message' => 'Double Cards From Deck2 Not Deleted'));
 	}
 }
 

@@ -74,7 +74,7 @@ const dealCards = async function(){
 		var json = await res1.json();
 		var images = '';
 		//alert(json.length/7);
-		for( var i = 0; i < 20; ++i ) {
+		for( var i = 0; i < json.length; ++i ) {
 			images += '<img src="' + json[i]['c_url'] +'" />';
 		}	
 		document.getElementById('p1').innerHTML = images; 
@@ -82,7 +82,7 @@ const dealCards = async function(){
 		var json = await res2.json();
 		var images = '';
 		//alert(json.length/7);
-		for( var i = 0; i < 21; ++i ) {
+		for( var i = 0; i < json.length; ++i ) {
 			images += '<img src="' + json[i]['c_url'] +'" />';
 		}
 		
