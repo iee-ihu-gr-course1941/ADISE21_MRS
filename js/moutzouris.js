@@ -36,8 +36,8 @@ $(function () {
 //εμφανίζει-μοιράζει τις κάρτες στους παίκτες
 const resetCards = async function(){
 
-         const res1=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck1');
-         const res2=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck2');   
+         const res1=await fetch('moutzouris.php/deck1');
+         const res2=await fetch('moutzouris.php/deck2');   
 
 		var json = await res1.json();
 		console.log(json.length)
@@ -67,9 +67,9 @@ const resetCards = async function(){
 const dealCards = async function(){
 	
     try {
-         await fetch('http://localhost/ADISE21_MRS/moutzouris.php/dealCards'); 
-         const res1=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck1');
-         const res2=await fetch('http://localhost/ADISE21_MRS/moutzouris.php/deck2');   
+         await fetch('moutzouris.php/dealCards'); 
+         const res1=await fetch('moutzouris.php/deck1');
+         const res2=await fetch('moutzouris.php/deck2');   
 
 		var json = await res1.json();
 		var images = '';
@@ -99,7 +99,7 @@ const dealCards = async function(){
 };
 
 async function delete1() {
-		await fetch('http://localhost/ADISE21_MRS/moutzouris.php/delete1');
+		await fetch('moutzouris.php/delete1');
 		
 		resetCards();
 		window.location;
@@ -136,7 +136,7 @@ function Winner2(json) {
 	} 
 }
 async function delete2() {
-	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/delete2');
+	await fetch('moutzouris.php/delete2');
 	
 	resetCards();
 	window.location;
@@ -149,16 +149,14 @@ async function delete2() {
 	
 }
 async function get_a_card() {
-	//await fetch('http://localhost/ADISE21_MRS/moutzouris.php/get1');
-	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/pick1');
+	await fetch('moutzouris.php/pick1');
 		resetCards();
 		window.location;
 		$("#delete1").removeClass("disabled");
 		$("#pick1").addClass("disabled")
 }
 async function get_a_card2() {
-	//await fetch('http://localhost/ADISE21_MRS/moutzouris.php/get2');
-	await fetch('http://localhost/ADISE21_MRS/moutzouris.php/pick2');
+	await fetch('moutzouris.php/pick2');
 		resetCards();
 		window.location;
 		$("#delete2").removeClass("disabled");
