@@ -200,7 +200,7 @@ CREATE TABLE `game_status` (
 /*Data for the table `game_status` */
 
 insert  into `game_status`(`status`,`p_turn`,`result`,`last_change`) values 
-('not active',NULL,NULL,'2022-01-15 18:37:40');
+('not active',NULL,NULL,'2022-01-15 20:41:29');
 
 /*Table structure for table `players` */
 
@@ -232,28 +232,6 @@ END */$$
 
 
 DELIMITER ;
-
-/*Table structure for table `random` */
-
-DROP TABLE IF EXISTS `random`;
-
-/*!50001 DROP VIEW IF EXISTS `random` */;
-/*!50001 DROP TABLE IF EXISTS `random` */;
-
-/*!50001 CREATE TABLE  `random`(
- `c_id` int(11) ,
- `c_name` enum('ace','two','three','four','five','six','seven','eight','nine','ten','jack','queen','king','back') ,
- `c_value` int(11) ,
- `c_suit` enum('spades','clubs','hearts','diamonds','back') ,
- `c_url` varchar(150) 
-)*/;
-
-/*View structure for view random */
-
-/*!50001 DROP TABLE IF EXISTS `random` */;
-/*!50001 DROP VIEW IF EXISTS `random` */;
-
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `random` AS select `cards_for_moutzouris_reset`.`c_id` AS `c_id`,`cards_for_moutzouris_reset`.`c_name` AS `c_name`,`cards_for_moutzouris_reset`.`c_value` AS `c_value`,`cards_for_moutzouris_reset`.`c_suit` AS `c_suit`,`cards_for_moutzouris_reset`.`c_url` AS `c_url` from `cards_for_moutzouris_reset` order by rand() */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
