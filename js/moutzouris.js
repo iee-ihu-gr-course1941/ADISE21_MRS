@@ -27,7 +27,7 @@ $(function () {
 	//$('#do_move').click( do_move);
 	//$('#move_div').hide();
 	
-	game_status_update();
+	setInterval(game_status_update,1000);
 	//$('#the_move_src').change( update_moves_selector);
 	//$('#do_move2').click( do_move2);
 });
@@ -142,7 +142,7 @@ const dealCards = async function(){
 	$('.play_buttons').show();
 	$('#moutzouris_dealCards').hide();
 };
-
+zz
 async function delete1() {
 		await fetch('moutzouris.php/delete1');
 		
