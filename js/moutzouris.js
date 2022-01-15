@@ -4,6 +4,7 @@ var board={};
 var last_update=new Date().getTime();
 var timer=null;
 
+// js from RITA
 
 $(function () {
 	//draw_empty_board();
@@ -13,14 +14,17 @@ $(function () {
 	$('#moutzouris_dealCards').hide();
 	$('.play_buttons').hide();
 
-
+	$('#moutzouris_restart').click(reset_board); //----added from main
 	$('#moutzouris_login').click( login_to_game);
 	$('#moutzouris_reset').click( reset_board);
 	$('#moutzouris_dealCards').click(dealCards);
 	//$('#moutzouris_dealCards').click(fill_deck);
 	$('#moutzouris_start').click(show_empty_decks);
 	//$('#moutzouris_start').click(showDecks);
-	
+	$('#delete1').click(delete1); //----added from main
+	$('#delete2').click(delete2);//----added from main
+	$('#pick1').click(pick1);//----added from main
+	$('#pick2').click(pick2);//----added from main
 	//$('#do_move').click( do_move);
 	//$('#move_div').hide();
 	
@@ -160,8 +164,10 @@ function dealCards() { //fill_board
 	//dealing cards to db
 	$.ajax({url: "moutzouris.php/dealCards", 
 			method: 'GET',
-			/* success: fill_deck1 */});
+			success: viewCards});
+}
 
+function viewCards(){ //σημαίνει να εμφανίσει ξανά τα decks
 	$.ajax({url: "moutzouris.php/deck1/", 
 	success: fill_deck1 });
 
@@ -171,15 +177,6 @@ function dealCards() { //fill_board
 
 
 
-/* function fill_deck1(){
-	$.ajax({url: "moutzouris.php/deck1/", 
-		success: fill_deck });
-}
-
-	 $.ajax({url: "moutzouris.php/deck2/", 
-	headers: {"X-Token": me.token},
-	success: fill_deck2 }); 	
-} */
 function fill_deck2(data) { //fill_board_by_data
 	//var deck1= JSON.parse(data);
 	var deck2= data;
@@ -222,7 +219,54 @@ function fill_deck1(data) { //fill_board_by_data
 		$('#move_div').hide(1000);
 	} */
 }
+function delete1() { //delete double from deck1
+	$.ajax({url: "moutzouris.php/delete1", 
+			method: 'GET',
+			success: viewCards});
 
+		window.location;
+		$("#delete1").addClass("hide");
+		$("#delete2").removeClass("hide");
+		$("#delete2").addClass("disabled");
+		$("#pick1").addClass("hide");
+		$("#pick2").removeClass("hide disabled");
+}
+
+function delete2() { //delete double from deck2
+	$.ajax({url: "moutzouris.php/delete2", 
+			method: 'GET',
+			success: viewCards});
+
+	window.location;
+	$("#delete2").addClass("hide");
+	$("#delete1").removeClass("hide");
+	$("#delete1").addClass("disabled");
+	$("#pick2").addClass("hide");
+	$("#pick1").removeClass("hide disabled");
+
+}
+
+function pick1(){
+	$.ajax({url: "moutzouris.php/pick1", 
+			method: 'GET',
+			success: viewCards});
+
+	window.location;
+	$("#delete1").removeClass("disabled");
+	$("#pick1").addClass("disabled")		
+
+}
+
+function pick2(){
+	$.ajax({url: "moutzouris.php/pick1", 
+			method: 'GET',
+			success: viewCards});
+
+		window.location;
+		$("#delete2").removeClass("disabled");
+		$("#pick2").addClass("disabled")		
+
+}
 
 /* function draw_empty_board(p) {
 	

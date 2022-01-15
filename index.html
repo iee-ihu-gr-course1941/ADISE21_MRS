@@ -16,41 +16,54 @@
 	<link href="jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet">
 </head>
 <body>
-
+<!--  index RITA -->
     
-	<div id='deck_div' class='container'>
-		<div >
-			<h1>Μουτζούρης</h1>
-		</div>
+<div id='deck_div' class='container'>
+	<div >
+		<h1>Μουτζούρης</h1>
+	</div>
+	<div class="container center">
 		<div class="row">
-		
+			<div class="col-sm">
+				<button id='moutzouris_restart' class='btn btn-primary hide' >EΠΑΝΕΝΑΡΞΗ</button>
+			</div>
+
+			<div class="col-sm">
+				<div class="status font" id="status"></div>
+			</div>
+
+			<div class="col-sm">
+				<button id='moutzouris_dealCards' class='btn btn-primary' >Μοίρασε χαρτιά</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+	
 		<div id=empty_board class="col-6 col-lg-6 background">
 			<p class=player>Player 1</p>
 			<br/>
 			<div class=play_buttons>
-				<button id='delete1' class='btn btn-primary'>Αφαίρεση διπλών</button>
+				<button id='delete1' class='btn btn-primary disabled'>Αφαίρεση διπλών</button>
 				<button id='pick1' class='btn btn-primary'>Πάρε κάρτα</button>
 			</div>
 			<br/>
-			<div id='p1' class="p-style"> 
-			</div>
-			
+			<div id='p1' class="p-style"> </div>
 		</div>
 		<div id=empty_board class="col-6 col-lg-6 background2">
 			<p class=player>Player 2</p>
 			<br/>
 			<div class=play_buttons>
-				<button id='delete2' class='btn btn-primary'>Αφαίρεση διπλών</button>
-				<button id='pick2' class='btn btn-primary'>Πάρε κάρτα</button>
+				<button id='delete2' class='btn btn-primary hide disabled'>Αφαίρεση διπλών</button>
+				<button id='pick2' class='btn btn-primary hide'>Πάρε κάρτα</button>
 			</div>
 			<br/>
 			<div id='p2' class="p-style">
 			</div>
-			
-		</div>
 		</div>
 	</div>
-	<br/>
+</div>
+<br/>
 
 	 <!-- <div class="container">
         <div class="row">
@@ -94,7 +107,7 @@
 		<!-- <p>---buttons div</p> -->
 		<button id='moutzouris_start' class='btn btn-primary' >ΕΝΑΡΞΗ</button>
 
-		<button id='moutzouris_dealCards' class='btn btn-primary' >Μοίρασε χαρτιά</button>
+		<!-- <button id='moutzouris_dealCards' class='btn btn-primary' >Μοίρασε χαρτιά</button> -->
 		
 	<br/> <br/>
 	<button id='moutzouris_reset' class='btn btn-primary'>RESET</button> </div>
