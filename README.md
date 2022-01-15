@@ -77,12 +77,12 @@ Two empty tables in which we split shuffled cards from Cards_for_moutzouris.
 A table that contains the status of the game.
 | Field | Description |
 | --- | --- |
-|`status`|Enum values : 'not active','initialized','started','ended','aborded'|
+|`status`| 'not active','initialized','started','ended','aborded'|
 |`p_turn`| Id of the player that plays |
 |`result`| Id of the player that won|
 |`last_change`|A timestamp of the last change/action in the game |
 
-###Players
+### Players
 A table that contains player's info.
 | Field | Description |
 | --- | --- |
