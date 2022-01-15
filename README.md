@@ -2,7 +2,7 @@
 
 ## Contributors
 * Μαργαρίτα Νεκταρία Αλεξίου - Full Stack Decelopment
-* Στέφανος Καυκαλιάς - Front End Decelopment
+* Στέφανος Καυκαλιάς - Front End Development
 * Ποντικάκης Δημήτρης - Back End Development
 
 ![GitHub Contributors Image](https://contrib.rocks/image?repo=iee-ihu-gr-course1941/ADISE21_MRS)
