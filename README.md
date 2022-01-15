@@ -1,9 +1,9 @@
 # ADISE21_MRS
 
 ## Contributors
-*Μαργαρίτα Νεκταρία Αλεξίου - Full Stack Decelopment
-*Στέφανος Καυκαλιάς - Front End Decelopment
-*Ποντικάκης Δημήτρης - Back End Development
+* Μαργαρίτα Νεκταρία Αλεξίου - Full Stack Decelopment
+* Στέφανος Καυκαλιάς - Front End Decelopment
+* Ποντικάκης Δημήτρης - Back End Development
 
 ![GitHub Contributors Image](https://contrib.rocks/image?repo=iee-ihu-gr-course1941/ADISE21_MRS)
 
