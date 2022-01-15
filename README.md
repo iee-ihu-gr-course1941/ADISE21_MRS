@@ -7,7 +7,7 @@
 
 ![GitHub Contributors Image](https://contrib.rocks/image?repo=iee-ihu-gr-course1941/ADISE21_MRS)
 
-## Demo Page to Play
+### Demo Page to Play
 
 Μπορείτε να κατεβάσετε τοπικά ή να επισκευτείτε την σελίδα: 
 https://users.it.teithe.gr/~it164852/ADISE21_MRS/
