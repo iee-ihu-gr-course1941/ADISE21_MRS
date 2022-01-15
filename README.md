@@ -1,7 +1,7 @@
 # ADISE21_MRS
 
 ## Contributors
-* Μαργαρίτα Νεκταρία Αλεξίου - Full Stack Decelopment
+* Μαργαρίτα Νεκταρία Αλεξίου - Full Stack Development
 * Στέφανος Καυκαλιάς - Front End Development
 * Ποντικάκης Δημήτρης - Back End Development
 
