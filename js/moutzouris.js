@@ -226,9 +226,9 @@ function game_status_update() {
 	game_status=data[0];
 	console.log("status " +game_status.status);
 	//Λειτουργή
-	//  if(game_status.status = status){
-	// 	$('#moutzouris_dealCards').removeClass("disabled");
-	//  }
+	 if(game_status.status == "started" /* status */){
+		$('#moutzouris_dealCards').removeClass("disabled");
+	 }
 	update_info();
 	clearTimeout(timer);
 	/* if(game_status.p_turn==me.p_id &&  me.p_id!=null) {
