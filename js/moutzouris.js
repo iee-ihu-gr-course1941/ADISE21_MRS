@@ -17,6 +17,7 @@ $(function () {
 	$('#moutzouris_login').click( login_to_game);
 	$('#moutzouris_reset').click( reset_board);
 	$('#moutzouris_dealCards').click(dealCards);
+	//$('#moutzouris_dealCards').click(fill_deck);
 	$('#moutzouris_start').click(show_empty_decks);
 	//$('#moutzouris_start').click(showDecks);
 	
@@ -29,7 +30,7 @@ $(function () {
 });
 
 //εμφανίζει-μοιράζει τις κάρτες στους παίκτες
-const dealCards = async function(){
+/* const dealCards = async function(){
 	
     try {
          await fetch('http://localhost/ADISE21_MRS/moutzouris.php/dealCards'); 
@@ -60,7 +61,7 @@ const dealCards = async function(){
     }
 	$('.play_buttons').show();
 	$('#moutzouris_dealCards').hide();
-};
+}; */
 
 
 
@@ -154,6 +155,74 @@ function show_empty_decks(){
 	$('#moutzouris_dealCards').show();
 	
 }
+
+function dealCards() { //fill_board
+	//dealing cards to db
+	$.ajax({url: "moutzouris.php/dealCards", 
+			method: 'GET',
+			/* success: fill_deck1 */});
+
+	$.ajax({url: "moutzouris.php/deck1/", 
+	success: fill_deck1 });
+
+	$.ajax({url: "moutzouris.php/deck2/", 
+	success: fill_deck2 });
+}
+
+
+
+/* function fill_deck1(){
+	$.ajax({url: "moutzouris.php/deck1/", 
+		success: fill_deck });
+}
+
+	 $.ajax({url: "moutzouris.php/deck2/", 
+	headers: {"X-Token": me.token},
+	success: fill_deck2 }); 	
+} */
+function fill_deck2(data) { //fill_board_by_data
+	//var deck1= JSON.parse(data);
+	var deck2= data;
+	var images = '';
+	//alert("inside fill deck 2");
+	for( var i = 0; i < deck2.length; ++i ) {
+		images += '<img src="' + deck2[i]['c_url'] +'" />';
+	}	
+	document.getElementById('p2').innerHTML = images; 
+}
+function fill_deck1(data) { //fill_board_by_data
+	//var deck1= JSON.parse(data);
+	var deck1= data;
+	var images = '';
+	//alert("inside fill deck 1");
+	for( var i = 0; i < deck1.length; ++i ) {
+		images += '<img src="' + deck1[i]['c_url'] +'" />';
+	}	
+	document.getElementById('p1').innerHTML = images; 
+
+	$('.play_buttons').show();
+	$('#moutzouris_dealCards').hide();
+	/* for(var i=0;i<data.length;i++) {
+		var o = data[i];
+		var id = '#square_'+ o.x +'_' + o.y;
+		var c = (o.piece!=null)?o.piece_color + o.piece:'';
+		var pc= (o.piece!=null)?'piece'+o.piece_color:'';
+		var im = (o.piece!=null)?'<img class="piece '+pc+'" src="images/'+c+'.png">':'';
+		$(id).addClass(o.b_color+'_square').html(im);
+	}
+ 
+	$('.ui-droppable').droppable( "disable" );
+		
+	if(me && me.piece_color!=null) {
+		$('.piece'+me.piece_color).draggable({start: start_dragging, stop: end_dragging, revert:true});
+	}
+	if(me.piece_color!=null && game_status.p_turn==me.piece_color) {
+		$('#move_div').show(1000);
+	} else {
+		$('#move_div').hide(1000);
+	} */
+}
+
 
 /* function draw_empty_board(p) {
 	
