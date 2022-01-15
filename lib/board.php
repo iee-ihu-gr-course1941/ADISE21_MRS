@@ -112,7 +112,7 @@ function read_board()
 	$res = $st->get_result();
 	header('Content-type: application/json');
 	print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);
-	return($res->fetch_all(MYSQLI_ASSOC));
+	return ($res->fetch_all(MYSQLI_ASSOC));
 }
 
 function read_deck1()
@@ -124,7 +124,7 @@ function read_deck1()
 	$res = $st->get_result();
 	header('Content-type: application/json');
 	print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);
-	return($res->fetch_all(MYSQLI_ASSOC));
+	return ($res->fetch_all(MYSQLI_ASSOC));
 }
 
 function read_deck2()
@@ -136,45 +136,102 @@ function read_deck2()
 	$res = $st->get_result();
 	header('Content-type: application/json');
 	print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);
-	return($res->fetch_all(MYSQLI_ASSOC));
+	return ($res->fetch_all(MYSQLI_ASSOC));
 }
 
 function delete_double_deck1()
 {
 	global $mysqli;
-	// Create query
-	$query = 'DELETE FROM deck1 WHERE deck1.c_value IN 
-	(SELECT c_value FROM deck1 GROUP BY c_value HAVING COUNT(*) = 2)';
+	// Deletes cards with same value that appear 4 times
+	$query1 = 'DELETE FROM deck1 WHERE deck1.c_value IN 
+	(SELECT c_value FROM deck1 GROUP BY c_value HAVING COUNT(*) = 4)';
 	// Prepare statement
-	$stmt = $mysqli->prepare($query);
+	$stmt1 = $mysqli->prepare($query1);
+
 	// Execute query
-	$stmt->execute();
-	if ($stmt->execute()) {
+	//$stmt1->execute();
+
+	// Deletes cards with same value that appear 2 times
+	$query2 = 'DELETE FROM deck1 WHERE deck1.c_value IN 
+	(SELECT c_value FROM deck1 GROUP BY c_value HAVING COUNT(*) = 2)';
+
+	$stmt2 = $mysqli->prepare($query2);
+
+	// Execute query
+	//$stmt2->execute();
+
+	// Deletes 2 out of 3 cards that have the same value
+	$query3 = 'DELETE FROM deck1
+	WHERE c_id IN (
+	SELECT c_id FROM (
+		SELECT c_id, ROW_NUMBER() OVER (PARTITION BY c_value) AS rownum
+		FROM deck1
+		)AS sub 
+		WHERE rownum >1
+		);';
+
+	$stmt3 = $mysqli->prepare($query3);
+
+	// Execute query
+	//$stmt3->execute();
+
+
+	if ($stmt1->execute() and $stmt2->execute() and $stmt3->execute()) {
 		echo json_encode(
-			array('message' => 'Double Cards From Deck1 Deleted'));
+			array('message' => 'Double Cards From Deck1 Deleted')
+		);
 	} else {
 		echo json_encode(
-			array('message' => 'Double Cards From Deck1 Not Deleted'));
+			array('message' => 'Double Cards From Deck1 Not Deleted')
+		);
 	}
 }
 
 function delete_double_deck2()
 {
 	global $mysqli;
-	// Create query
-	$query = 'DELETE FROM deck2 WHERE deck2.c_value IN 
+	// Deletes cards with same value that appear 4 times
+	$query1 = 'DELETE FROM deck2 WHERE deck2.c_value IN 
+	(SELECT c_value FROM deck2 GROUP BY c_value HAVING COUNT(*) = 4)';
+	// Prepare statement
+	$stmt1 = $mysqli->prepare($query1);
+
+	// Execute query
+	//$stmt1->execute();
+
+	// Deletes cards with same value that appear 2 times
+	$query2 = 'DELETE FROM deck2 WHERE deck2.c_value IN 
 	(SELECT c_value FROM deck2 GROUP BY c_value HAVING COUNT(*) = 2)';
 
-	// Prepare statement
-	$stmt = $mysqli->prepare($query);
+	$stmt2 = $mysqli->prepare($query2);
+
 	// Execute query
-	$stmt->execute();
-	if ($stmt->execute()) {
+	//$stmt2->execute();
+
+	// Deletes 2 out of 3 cards that have the same value
+	$query3 = 'DELETE FROM deck2
+	WHERE c_id IN (
+	SELECT c_id FROM (
+		SELECT c_id, ROW_NUMBER() OVER (PARTITION BY c_value) AS rownum
+		FROM deck2
+		)AS sub 
+		WHERE rownum >1
+		);';
+
+	$stmt3 = $mysqli->prepare($query3);
+
+	// Execute query
+	//$stmt3->execute();
+
+
+	if ($stmt1->execute() and $stmt2->execute() and $stmt3->execute()) {
 		echo json_encode(
-			array('message' => 'Double Cards From Deck2 Deleted'));
+			array('message' => 'Double Cards From Deck2 Deleted')
+		);
 	} else {
 		echo json_encode(
-			array('message' => 'Double Cards From Deck2 Not Deleted'));
+			array('message' => 'Double Cards From Deck2 Not Deleted')
+		);
 	}
 }
 
