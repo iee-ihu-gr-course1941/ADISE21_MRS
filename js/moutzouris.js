@@ -27,7 +27,7 @@ $(function () {
 	//$('#do_move').click( do_move);
 	//$('#move_div').hide();
 	
-	setInterval(game_status_update,1000);
+	setInterval(game_status_update,2000);
 	//$('#the_move_src').change( update_moves_selector);
 	//$('#do_move2').click( do_move2);
 });
