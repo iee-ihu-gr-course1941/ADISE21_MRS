@@ -202,15 +202,15 @@ async function get_a_card2() {
 }
 
 function reset_board() {
-	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST' /* ,  success: fill_board_by_data */ });
+	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST' });
 
 	$('#deck_div').hide();
 	$('#game_initializer').show(2000);
 }
 function restart_board() {
-	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST' /* ,  success: fill_board_by_data */ });
+	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST'});
 
-	window.location.reload()
+	window.location.reload();
 	$('#deck_div').hide();
 	$('#game_initializer').show(2000);
 }
@@ -271,16 +271,12 @@ function game_status_update() {
 	update_info();
 	clearTimeout(timer);
 	/* if(game_status.p_turn==me.p_id &&  me.p_id!=null) {
-		x=0;
 		// do play
 		if(game_stat_old.p_turn!=game_status.p_turn) {
 			fill_board();
 		}
-		$('#move_div').show(1000);
 		timer=setTimeout(function() { game_status_update();}, 15000);
 	} else {
-		// must wait for something
-		$('#move_div').hide(1000);
 		timer=setTimeout(function() { game_status_update();}, 4000);
 	} */
  	
