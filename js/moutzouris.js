@@ -6,8 +6,7 @@ var timer=null;
 var back_url = 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Card_back_01.svg'; //new
 
 $(function () {
-	//draw_empty_board();
-	//fill_board();
+
 	$('#deck_div').hide();
 	$('#moutzouris_start').hide();
 	$('#moutzouris_dealCards').hide();
@@ -19,17 +18,13 @@ $(function () {
 	$('#moutzouris_reset').click( reset_board);
 	$('#moutzouris_dealCards').click(dealCards);
 	$('#moutzouris_start').click(show_empty_decks);
-	//$('#moutzouris_start').click(showDecks);
+	
 	$('#delete1').click(delete1);
 	$('#delete2').click(delete2);
 	$('#pick1').click(get_a_card);
 	$('#pick2').click(get_a_card2);
-	//$('#do_move').click( do_move);
-	//$('#move_div').hide();
-	
 	setInterval(game_status_update,2000);
-	//$('#the_move_src').change( update_moves_selector);
-	//$('#do_move2').click( do_move2);
+
 });
 
 // $('delete1').click(delete_duplicate_cards1);
@@ -43,7 +38,6 @@ const resetCards = async function(){
 			var json1 = await res1.json();
 			var images = '';
 			Winner(json1);
-			//alert(json.length/7);
 			for( var i = 0; i < json1.length; ++i ) {
 				images += '<img src="' + json1[i]['c_url'] +'" />';
 			}	
@@ -63,7 +57,6 @@ const resetCards = async function(){
 			var json1 = await res1.json();
 			var images = '';
 			Winner(json1);
-			//alert(json.length/7);
 			for( var i = 0; i < json1.length; ++i ) {
 				images += '<img src="' + back_url +'" />';
 			}	
@@ -96,7 +89,7 @@ const dealCards = async function(){
 			var json1 = await res1.json();
 			var images = '';
 			Winner(json1);
-			//alert(json.length/7);
+			
 			for( var i = 0; i < json1.length; ++i ) {
 				images += '<img src="' + json1[i]['c_url'] +'" />';
 			}	
@@ -115,7 +108,7 @@ const dealCards = async function(){
 			var json1 = await res1.json();
 			var images = '';
 			Winner(json1);
-			//alert(json.length/7);
+			
 			for( var i = 0; i < json1.length; ++i ) {
 				images += '<img src="' + back_url +'" />';
 			}	
@@ -209,16 +202,15 @@ async function get_a_card2() {
 }
 
 function reset_board() {
-	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST' /* ,  success: fill_board_by_data */ });
-	//$('#move_div').hide();
-	
+	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST' });
+
 	$('#deck_div').hide();
 	$('#game_initializer').show(2000);
 }
 function restart_board() {
-	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST' /* ,  success: fill_board_by_data */ });
-	//$('#move_div').hide();
-	window.location.reload()
+	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST'});
+
+	window.location.reload();
 	$('#deck_div').hide();
 	$('#game_initializer').show(2000);
 }
@@ -230,8 +222,7 @@ function restart_board() {
 		return;
 	}
 	var pid = $('#p_id').val();
-	//draw_empty_board(p_id);
-	//fill_board();
+	
 	
 	$.ajax({url: "moutzouris.php/players/"+pid, 
 			method: 'PUT',
@@ -241,13 +232,10 @@ function restart_board() {
 			data: JSON.stringify( {p_username: $('#p_username').val(), p_id: pid}),
 			success: login_result,
 			error: login_error});
-	//alert('username ok');
-	//alert(data);
 }
 
 //ok και αυτή
 function login_result(data) {
-	//console.log("inside log ok");
 	me = data[0];
 	$('#game_initializer').hide();
 	update_info();
@@ -283,16 +271,12 @@ function game_status_update() {
 	update_info();
 	clearTimeout(timer);
 	/* if(game_status.p_turn==me.p_id &&  me.p_id!=null) {
-		x=0;
 		// do play
 		if(game_stat_old.p_turn!=game_status.p_turn) {
 			fill_board();
 		}
-		$('#move_div').show(1000);
 		timer=setTimeout(function() { game_status_update();}, 15000);
 	} else {
-		// must wait for something
-		$('#move_div').hide(1000);
 		timer=setTimeout(function() { game_status_update();}, 4000);
 	} */
  	
@@ -314,7 +298,7 @@ function show_empty_decks(){
 }
 
 
-//-----Read me----------
+//-----Read me---------- ajax
 
 
 /* function dealCards() { //fill_board
