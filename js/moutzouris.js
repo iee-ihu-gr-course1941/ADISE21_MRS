@@ -14,7 +14,7 @@ $(function () {
 	$('.play_buttons').hide();
 	
 
-	$('#moutzouris_restart').click(reset_board);
+	$('#moutzouris_restart').click(restart_board);
 	$('#moutzouris_login').click( login_to_game);
 	$('#moutzouris_reset').click( reset_board);
 	$('#moutzouris_dealCards').click(dealCards);
@@ -211,6 +211,14 @@ async function get_a_card2() {
 function reset_board() {
 	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST' /* ,  success: fill_board_by_data */ });
 	//$('#move_div').hide();
+	
+	$('#deck_div').hide();
+	$('#game_initializer').show(2000);
+}
+function restart_board() {
+	$.ajax({url: "moutzouris.php/reset" , headers: {"X-Token": me.token}, method: 'POST' /* ,  success: fill_board_by_data */ });
+	//$('#move_div').hide();
+	window.location.reload()
 	$('#deck_div').hide();
 	$('#game_initializer').show(2000);
 }
