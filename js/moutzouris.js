@@ -165,7 +165,7 @@ async function delete1() {
 		$("#delete1").addClass("hide");
 		$("#delete2").addClass("hide");
 
-		$("#status").text("Player 1 win")
+		$("#status").text("Player 1 win, Player 2 you are MOUTZOURIS")
 	} 	
 }
 function Winner2(json) {
@@ -177,7 +177,7 @@ function Winner2(json) {
 		$("#delete1").addClass("hide");
 		$("#delete2").addClass("hide");
 
-		$("#status").text("Player 2 win")
+		$("#status").text("Player 2 win, Player 1 you are MOUTZOURIS")
 	} 
 }
 async function delete2() {
