@@ -35,6 +35,21 @@ https://users.it.teithe.gr/~it164852/ADISE21_MRS/
     ?>
 ```
 
+## Περιγραφή παιχνιδιού
+
+### Στόχος :
+     Ο στόχος του παιχνιδιού είναι να μείνεις χωρίς φύλλα στο χέρι. Αυτός που θα μείνει με ένα φύλλο είναι ο χαμένος.
+
+### Προετοιμασία :
+     Πριν ξεκινήσετε αφαιρείτε από την τράπουλα όλες τις φιγούρες  και κρατάτε μόνο τον Ρήγα Μπαστούνι.
+     
+### Διαδικασία παιχνιδιού :
+     Αφού ανακατέψουμε καλά, μοιράζουμε όλη την τράπουλα στους παίχτες έτσι ώστε όλοι να έχουν των ίδιο αριθμό φύλλων (ή + - 1). Κάθε παίχτης αφαιρεί από τα φύλλα που έχει στα χέρια του τα ζευγάρια, δηλαδή, 2 Άσσους 2 δυάρια 2 τριάρια κ.τ.λ. Τα υπόλοιπα τα κρατάμε στο χέρι σαν βεντάλια έτσι ώστε να μπορεί ο άλλος παίχτης να διαλέξει, χωρίς να τα βλέπει, ένα από αυτά. Ο πρώτος παίχτης τραβάει ένα φύλλο από αυτόν που κάθετε στα αριστερά του, αν κάνει ζευγάρι το νέο χαρτί με κάποια από τα δικά του τότε τα ρίχνει, αλλιώς τα κρατάει και συνεχίζει ο επομένως που είναι στα δεξιά του. Όποιος ζευγαρώσει όλα τα φύλλα του βγαίνει από το παιχνίδι. Όποιος μείνει τελευταίος με τον Ρήγα Μπαστούνι (τον Μουτζούρη) στο χέρι του είναι ο χαμένος, και οι υπόλοιποι παίχτες αποφασίζουν την ποινή του.
+     
+### Στοιχεία :
+   Παίχτες : Από 2 έως 6
+   Χαρτιά : 41 (Μία τράπουλα)
+
 ## Database
 
 ### Cards
@@ -45,6 +60,7 @@ A table that contains a standard 52-card deck.
 |`c_name`| Card's name|
 |`c_value`| Card's value|
 |`c_suit`|Card's suit |
+|`c_image`|Card's image |
 
 ### Cards_for_moutzouris
 A table that contains the 41 cards needed to play old maid.
@@ -54,6 +70,7 @@ A table that contains the 41 cards needed to play old maid.
 |`c_name`| Card's name|
 |`c_value`| Card's value|
 |`c_suit`|Card's suit |
+|`c_image`|Card's image |
 
 ### Cards_for_moutzouris_reset
 A table that helps reset the initial deck of cards for old maid.
@@ -63,6 +80,7 @@ A table that helps reset the initial deck of cards for old maid.
 |`c_name`| Card's name|
 |`c_value`| Card's value|
 |`c_suit`|Card's suit |
+|`c_image`|Card's image |
 
 ### Deck1 - Deck2
 Two empty tables in which we split shuffled cards from Cards_for_moutzouris.
@@ -72,6 +90,7 @@ Two empty tables in which we split shuffled cards from Cards_for_moutzouris.
 |`c_name`| Card's name|
 |`c_value`| Card's value|
 |`c_suit`|Card's suit |
+|`c_image`|Card's image |
 
 ### Game_status
 A table that contains the status of the game.
