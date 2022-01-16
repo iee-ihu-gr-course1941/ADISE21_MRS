@@ -68,7 +68,7 @@ function handle_user($method, $b,$input) {
 }
 
 
-function current_color($token) {
+function current_player($token) { // 
 	
 	global $mysqli;
 	if($token==null) {return(null);}

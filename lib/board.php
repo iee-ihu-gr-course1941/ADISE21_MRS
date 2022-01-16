@@ -1,5 +1,5 @@
 <?php
-
+ 
 
 /*function show_piece($x,$y) {
 	global $mysqli;
@@ -77,6 +77,7 @@ function move_piece($x,$y,$x2,$y2,$token) {
 //έχει θέμα η function στον users -- δουλεύει μόνο τοπικά
 //θα φέρει τις κάρτες από τον cards_for_moutzouris_reset
 //στον cards_for_moutzouris
+
 function reset_board_local()
 {
 	global $mysqli;
@@ -279,36 +280,48 @@ function pick_card2()
 function deleteDecks()
 {
 	global $mysqli;
-	$sql = 'delete from cards_for_moutzouris';
-	$mysqli->query($sql);
-	$sql = 'delete from deck1';
-	$mysqli->query($sql);
-	$sql = 'delete from deck2';
-	$mysqli->query($sql);
+	$sql1 = 'delete from cards_for_moutzouris';
+	$mysqli->query($sql1);
+	$sql2 = 'delete from deck1';
+	$mysqli->query($sql2);
+	$sql3 = 'delete from deck2';
+	$mysqli->query($sql3);
 
 	echo json_encode(array('message' => 'decks deleted'));
+	
 }
+
 
 
 function dealCardsToPlayers()
 {
-	global $mysqli;
-	//getting shuffled cards from cards_for_moutzouris_reset to cards_for_moutzouris
-	$sql = 'INSERT INTO cards_for_moutzouris (SELECT * 
-	FROM cards_for_moutzouris_reset ORDER BY RAND());';
-	$mysqli->query($sql);
-	//getting 0-20 cards from cards_for_moutzouris to deck1
-	$sql = 'REPLACE INTO deck1 (SELECT * 
-	FROM cards_for_moutzouris
-	LIMIT 20 OFFSET 0);';
-	$mysqli->query($sql);
-	//getting 21-41 cards from cards_for_moutzouris to deck2
-	$sql = 'REPLACE INTO deck2 (SELECT * 
-	FROM cards_for_moutzouris
-	LIMIT 21 OFFSET 20);';
-	$mysqli->query($sql);
+		global $mysqli;
+		$sql = 'SELECT * FROM cards_for_moutzouris';
+		$st = $mysqli->prepare($sql);
+		$st->execute();
+		$res = $st->get_result();
+		
+		if ((mysqli_num_rows($res)) > 1){ //to avoid deal cards twice
+			echo json_encode(array('message' => 'Cards Already Dealt To Players'));
+			exit;
+		}else if ((mysqli_num_rows($res)) < 1){
+			//getting shuffled cards from cards_for_moutzouris_reset to cards_for_moutzouris
+			$sql1 = 'INSERT INTO cards_for_moutzouris (SELECT * 
+			FROM cards_for_moutzouris_reset ORDER BY RAND());';
+			$mysqli->query($sql1);
+			//getting 0-20 cards from cards_for_moutzouris to deck1
+			$sql2 = 'REPLACE INTO deck1 (SELECT * 
+			FROM cards_for_moutzouris
+			LIMIT 20 OFFSET 0);';
+			$mysqli->query($sql2);
+			//getting 21-41 cards from cards_for_moutzouris to deck2
+			$sql3 = 'REPLACE INTO deck2 (SELECT * 
+			FROM cards_for_moutzouris
+			LIMIT 21 OFFSET 20);';
+			$mysqli->query($sql3);
+			echo json_encode(array('message' => 'Cards Dealt To Players'));
+		} 
 
-	echo json_encode(array('message' => 'Cards Dealt To Players'));
 }
 
 function play($token)
